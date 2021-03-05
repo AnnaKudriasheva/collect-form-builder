@@ -1,0 +1,164 @@
+@light-gray: #E1E6ED;
+@border-gray: #778999;
+@blue-primary: #145FF5;
+@background-gray: #F9FAFB;
+
+html {
+  font-size: 16px;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+main {
+  height: 100vh;
+}
+
+.collect-form-builder-container {
+  p {
+    line-height: 1.5rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  h3 {
+     font-size: 1.2rem;
+     line-height: 1.688rem;
+   }
+  
+  .mb-1 {
+    margin-bottom: .5rem;
+  }
+  
+  .mb-2 {
+    margin-bottom: 1rem;
+  }
+  
+  .mb-3 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .p-1 {
+    padding: 1rem;
+  }
+  
+  .p-0 {
+    padding: 0;
+  }
+}
+
+button {
+  width: 100%;
+}
+
+iframe {
+  height: 100%;
+  width: 100%;
+}
+
+.br-gray {
+  border-right: 1px solid @light-gray;
+}
+
+.bl-gray {
+  border-left: 1px solid @light-gray;
+}
+
+label {
+  display: block;
+  font-size: .9rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+input {
+  height: 2rem;
+  padding: 0 8px;
+  border: 1px solid @border-gray;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.btn-link {
+  border: none;
+  color: @blue-primary;
+  background-color: transparent;
+  padding: 0 5px;
+  height: auto;
+  margin: 0;
+  box-shadow: none;
+  &:hover, &:active, &:focus {
+    background-color: transparent;
+    color: @blue-primary;
+  }
+}
+
+.field-layout {
+  padding: 1rem;
+  border: 1px solid @light-gray;
+  background-color: @background-gray;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.j-space-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.add-new-field-btn {
+  cursor: pointer;
+}
+
+.field-options-container {
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - 40%);
+  top: 40%;
+  background-color:white;
+  overflow: scroll; 
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  box-shadow: 0px 0px 6px rgba(23, 31, 39, 0.3);
+  transition: all .3s;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+div::-webkit-scrollbar {
+  display: none;
+}
+
+.field-options-container.closed {
+  top: 100%;
+  height: 0;
+}
+
+.field-options-container::-webkit-scrollbar { 
+  display: none;
+}
+
+.create-fields-container {
+  button {
+    height: 27px;
+  }
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
