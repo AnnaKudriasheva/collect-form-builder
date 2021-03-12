@@ -1,52 +1,53 @@
-// @ts-nocheck
 import React, { useReducer, createContext } from 'react';
-
 export const FormContext = createContext();
-
-
-const css = {
-  fontSize: '16px',
-  '&:placeholder': {
-    color: 'C8D0DB',
-  }
-};
 
 const initialState = {
   form: [
     {
       id: '0',
-      name: 'Cardholder name',
+      label: 'Cardholder Name:',
+      name: 'cardholder-name',
       type: 'text',
       placeholder: 'Cardholder name',
       validations: ['required'],
-      css,
+      autoComplete: "cc-name",
     },
     {
       id: '1',
-      name: 'Card number',
+      label: 'Card number:',
+      name: 'card-number',
       type: 'card-number',
       placeholder: '0000 0000 0000 0000',
       validations: ['required', 'validCardNumber'],
-      css,
+      showCardIcon: 'true',
+      autoComplete: "cc-number",
     },
     {
       id: '2',
-      name: 'Card expiration date',
+      label: 'Expiration Date:',
+      name: 'card-expiration-date',
       type: 'card-expiration-date',
       placeholder: 'MM / YY',
       validations: ['required', 'validCardExpirationDate'],
-      css,
+      autoComplete: "cc-exp",
     },
     {
       id: '3',
-      name: 'Card security code',
+      label: 'Card Security Code:',
+      name: 'card-security-code',
       type: 'card-security-code',
       placeholder: 'CVV',
       validations: ['required', 'validCardSecurityCode'],
-      css,
+      autoComplete: "cc-csc",
   }],
   currentActiveField: {},
   mode: '',
+  previewLoading: false,
+  vault_id: '',
+  environment: 'sandbox',
+  isLoading: false,
+  httpMethod: 'POST',
+  endpoint: '/',
 };
 
 const reducer = (state, action) => {
@@ -76,8 +77,18 @@ const reducer = (state, action) => {
       };
     case "SET_MODE":
       return { ...state, mode: action.payload };
+    case "PREVIEW_LOADING":
+      return { ...state, previewLoading: action.payload };
     case "SET_ACTIVE_FIELD":
       return { ...state, currentActiveField: action.payload };
+    case "SET_VAULT_ID":
+      return { ...state, vault_id: action.payload };
+    case "SET_ENV":
+      return { ...state, environment: action.payload };
+    case "SET_HTTP_METHOD":
+      return { ...state, httpMethod: action.payload };
+    case "SET_ENDPOINT":
+      return { ...state, endpoint: action.payload };
     default:
       return state;
   }

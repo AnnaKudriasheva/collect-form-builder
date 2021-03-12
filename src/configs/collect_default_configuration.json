@@ -1,0 +1,86 @@
+{
+  "text": {
+    "name": "",
+    "type": "text",
+    "placeholder": "",
+    "validations": ["required"],
+    "label": ""
+  },
+  "card-number": {
+    "name": "card-number",
+    "type": "card-number",
+    "placeholder": "Card number",
+    "validations": ["required", "validCardNumber"],
+    "label": "",
+    "showCardIcon": "true",
+    "autoComplete": "cc-number"
+  },
+  "card-expiration-date": {
+    "name": "card-expiration-date",
+    "type": "card-expiration-date",
+    "placeholder": "MM / YYYY",
+    "validations": ["required", "validCardExpirationDate"],
+    "label": "",
+    "autoComplete": "cc-exp"
+  },
+  "card-security-code": {
+    "name": "card-security-code",
+    "type": "card-security-code",
+    "placeholder": "CVV",
+    "validations": ["required", "validCardSecurityCode"],
+    "label": "",
+    "showCardIcon": "true",
+    "autoComplete": "cc-csc"
+  },
+  "ssn": {
+    "name": "ssn",
+    "type": "ssn",
+    "placeholder": "SSN",
+    "validations": ["required", "validSSN"],
+    "label": ""
+  },
+  "zip-code": {
+    "name": "zip-code",
+    "type": "zip-code",
+    "placeholder": "Zip Code",
+    "validations": ["required"],
+    "label": "",
+    "autoComplete": "postal-code"
+  },
+  "password": {
+    "name": "password",
+    "type": "password",
+    "placeholder": "Password",
+    "validations": ["required"],
+    "label": "",
+    "autoComplete": "current-password"
+  },
+  "number": {
+    "name": "number",
+    "type": "text",
+    "placeholder": "",
+    "validations": ["required"],
+    "label": ""
+  },
+  "textarea": {
+    "name": "textarea",
+    "type": "textarea",
+    "placeholder": "",
+    "validations": ["required"],
+    "label": ""
+  },
+  "checkbox": {
+    "name": "checkbox",
+    "type": "checkbox",
+    "placeholder": "",
+    "validations": ["required"],
+    "label": ""
+  },
+  "radio": {
+    "name": "radio",
+    "type": "radio",
+    "placeholder": "",
+    "validations": ["required"],
+    "label": ""
+  }
+}

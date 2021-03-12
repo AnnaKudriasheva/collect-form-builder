@@ -1,0 +1,26 @@
+.form-builder-collapse.ant-collapse {
+  border: none;
+  color: @blue-primary;
+  .ant-collapse-item {
+    &:last-child {
+      border-bottom: none;
+    }
+    .ant-collapse-header {
+      font-size: 1rem;
+      background-color: white;
+      color: @blue-primary;
+      border: none;
+      padding: 1.5rem;
+      i {
+        left: 0;
+      }
+    }
+    .ant-collapse-content {
+      overflow: visible;
+      border-top: none;
+      .ant-collapse-content-box {
+        padding: 1rem 0;
+      }
+    }
+  }
+}

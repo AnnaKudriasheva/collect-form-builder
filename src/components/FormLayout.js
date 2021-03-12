@@ -5,17 +5,12 @@ import Icon, { PlusOutlined } from '@ant-design/icons';
 
 import DeleteIcon from '../images/delete.svg';
 import DragDropIcon from '../images/drag-drop.svg';
-// import PlusOutlined from '../images/plus-outlined.svg';
 import { FormContext } from '../context/form-context';
 
 const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
   userSelect: "none",
   padding: '12px 0',
-
-  // change background colour if dragging
   background: "transparent",
-  // styles we need to apply on draggables
   ...draggableStyle
 });
 
@@ -26,7 +21,7 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
-const Layout = () => {
+const FormLayout = () => {
   const [state, dispatch] = useContext(FormContext);
 
   const handleItemEdit = (id) => {
@@ -71,7 +66,7 @@ const Layout = () => {
 
   return (
     <div className="create-fields-container">
-      <div onClick={handleItemAdd} className="field-layout d-flex j-space-between align-center add-new-field-btn mb-2">
+      <div onClick={handleItemAdd} className={`field-layout d-flex j-space-between align-center add-new-field-btn mb-2 ${state.mode === 'create' ? 'outlined' : ''}`}>
         <span>Add new field</span>
         <PlusOutlined style={{ fontSize: '24px'}}/>
       </div>
@@ -100,25 +95,25 @@ const Layout = () => {
                           <Icon component={DragDropIcon} style={{ fontSize: '24px'}}/>
                         </Col>
                         <Col span={22}>
-                          <div className="field-layout">
-                          <Row type="flex" align="middle">
-                            <Col span={20}>
-                              {item.name}
-                            </Col>
-                            <Col span={4}>
-                              <Row type="flex">
-                                <Col span={12}>
-                                  <Button className="p-0" onClick={() => handleItemEdit(item.id)} type="link">Edit</Button>
-                                </Col>
-                                <Col span={12}>
-                                  <Button className="p-0" onClick={() => handleItemRemove(item.id)} type="link">
-                                    <Icon component={DeleteIcon} style={{ color: 'transparent' }}/>
-                                  </Button>
-                                </Col>
-                              </Row>
-                            </Col>
-                          </Row>
-                          </div>
+                          <div className={`field-layout ${state.mode === 'edit' && item.id === state.currentActiveField.id ? 'outlined' : ''}`}>
+                            <Row type="flex" align="middle">
+                              <Col span={20}>
+                                {item.name}
+                              </Col>
+                              <Col span={4}>
+                                <Row type="flex">
+                                  <Col span={12}>
+                                    <Button className="p-0" onClick={() => handleItemEdit(item.id)} type="link">Edit</Button>
+                                  </Col>
+                                  <Col span={12}>
+                                    <Button className="p-0" onClick={() => handleItemRemove(item.id)} type="link">
+                                      <Icon component={DeleteIcon} style={{ color: 'transparent' }}/>
+                                    </Button>
+                                  </Col>
+                                </Row>
+                              </Col>
+                            </Row>
+                           </div>
                           </Col>
                       </Row>
                     </div>
@@ -134,4 +129,4 @@ const Layout = () => {
   )
 }
 
-export default Layout;
+export default FormLayout;

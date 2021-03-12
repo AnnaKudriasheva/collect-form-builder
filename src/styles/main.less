@@ -1,11 +1,10 @@
-@light-gray: #E1E6ED;
-@border-gray: #778999;
-@blue-primary: #145FF5;
-@background-gray: #F9FAFB;
+@import '../styles/variables.less';
+@import '../styles/margins-paddings.less';
+@import '../styles/collapse.less';
+@import '../styles/form.less';
 
 html {
   font-size: 16px;
-  overflow: hidden;
 }
 
 * {
@@ -20,6 +19,7 @@ main {
   p {
     line-height: 1.5rem;
   }
+  
   h2 {
     font-size: 1.5rem;
     line-height: 2.25rem;
@@ -30,30 +30,32 @@ main {
      font-size: 1.2rem;
      line-height: 1.688rem;
    }
-  
-  .mb-1 {
-    margin-bottom: .5rem;
+
+  .ant-spin-blur {
+    opacity: 0;
   }
-  
-  .mb-2 {
-    margin-bottom: 1rem;
+
+  .field-options {
+    .ant-card-head {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background-color: white;
+      z-index: 1;
+    }
   }
-  
-  .mb-3 {
-    margin-bottom: 1.5rem;
+
+  label {
+    color: @text-gray;
   }
-  
-  .p-1 {
-    padding: 1rem;
-  }
-  
-  .p-0 {
-    padding: 0;
+
+  .ant-tabs {
+    overflow: visible;
   }
 }
 
-button {
-  width: 100%;
+.site-page-header {
+  color: white;
 }
 
 iframe {
@@ -122,6 +124,11 @@ input {
   cursor: pointer;
 }
 
+.outlined {
+  border: 1px solid #145FF5;
+  box-shadow: 0px 0px 6px rgba(87, 158, 255, 0.4);
+}
+
 .field-options-container {
   position: absolute;
   width: 100%;
@@ -144,6 +151,10 @@ div::-webkit-scrollbar {
   display: none;
 }
 
+pre::-webkit-scrollbar {
+  display: none;
+}
+
 .field-options-container.closed {
   top: 100%;
   height: 0;
@@ -161,4 +172,12 @@ div::-webkit-scrollbar {
 
 .form-group {
   margin-bottom: 1rem;
+}
+
+.form-preview-empty {
+  text-align: center;
+  padding: 40px;
+  border: 1px dashed @text-light;
+  color: @text-light;
+  border-radius: 8px;
 }

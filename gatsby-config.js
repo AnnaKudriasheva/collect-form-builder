@@ -1,10 +1,11 @@
 module.exports = {
   pathPrefix: "/collect-form-builder",
   siteMetadata: {
-    title: "form-builder",
+    title: "Collect.js Form Builder",
   },
   plugins: [
     "gatsby-plugin-react-helmet",
+    "gatsby-transformer-json",
     {
       resolve: 'gatsby-plugin-antd',
       options: {

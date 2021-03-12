@@ -1,0 +1,60 @@
+{
+  "text": {
+    "validations": ["required", "regExp"],
+    "autoComplete": ["name", "email", "username", "organization", "street-address", "country", "country-name", "cc-name", "language", "bday", "url"],
+    "css": {}
+  },
+  "card-number": {
+    "validations": ["required", "validCardNumber"],
+    "showCardIcon": ["true", "false", {}],
+    "autoComplete": ["cc-number"],
+    "css": {}
+  },
+  "card-expiration-date": {
+    "validations": ["required", "validCardExpirationDate"],
+    "autoComplete": ["cc-exp"],
+    "css": {}
+  },
+  "card-security-code": {
+    "validations": ["required", "validCardSecurityCode"],
+    "showCardIcon": ["true", "false", {}],
+    "hideValue": ["true", "false"],
+    "autoComplete": ["cc-csc"],
+    "css": {}
+  },
+  "ssn": {
+    "validations": ["required", "validSSN"],
+    "autoComplete": [],
+    "css": {}
+  },
+  "zip-code": {
+    "validations": ["required", "regExp"],
+    "autoComplete": ["postal-code"],
+    "css": {}
+  },
+  "password": {
+    "validations": ["required", "regExp"],
+    "autoComplete": ["current-password", "new-password"],
+    "css": {}
+  },
+  "number": {
+    "validations": ["required", "regExp"],
+    "autoComplete": ["tel"],
+    "css": {}
+  },
+  "textarea": {
+    "validations": ["required", "regExp"],
+    "autoComplete": ["name", "email", "username", "organization", "street-address", "country", "country-name", "cc-name", "language", "bday", "url"],
+    "css": {}
+  },
+  "checkbox": {
+    "validations": ["required", "regExp"],
+    "autoComplete": [],
+    "css": {}
+  },
+  "radio": {
+    "validations": ["required", "regExp"],
+    "autoComplete": [],
+    "css": {}
+  }
+}

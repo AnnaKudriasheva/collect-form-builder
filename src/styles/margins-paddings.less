@@ -1,0 +1,53 @@
+.make-margins(@size: 3, @decrement: 1) when (@size >= 0) {
+  .make-margins(@size - @decrement);
+
+  @size-rem: ~"@{size}rem";
+
+  .collect-form-builder-container {
+    .m-@{size} {
+      margin: @size-rem;
+    }
+    .mt-@{size} {
+        margin-top: @size-rem;
+    }
+    .mr-@{size} {
+        margin-right: @size-rem;
+    }
+    .mb-@{size} {
+        margin-bottom: @size-rem;
+    }
+    .ml-@{size} {
+        margin-left: @size-rem;
+    }
+  }
+}
+
+.make-margins();
+
+// PADDING
+
+.make-paddings(@size: 3, @decrement: 1) when (@size >= 0) {
+  .make-paddings(@size - @decrement);
+
+  @size-rem: ~"@{size}rem";
+
+  .collect-form-builder-container {
+    .p-@{size} {
+      padding: @size-rem
+    }
+    .pt-@{size}{
+        padding-top: @size-rem;
+    }
+    .pr-@{size} {
+        padding-right: @size-rem;
+    }
+    .pb-@{size} {
+        padding-bottom: @size-rem;
+    }
+    .pl-@{size} {
+        padding-left: @size-rem;
+    }
+  }
+}
+
+.make-paddings();
