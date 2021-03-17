@@ -8,14 +8,16 @@ import { FormContext } from '../context/form-context';
 const FormBuilderContainer = (props) => {
   const [state, dispatch] = useContext(FormContext);
   return (
-    <Row gutter={80} type="flex" style={state.mode ? { height: '40%', overflow: 'scroll'} : { height: '100%' }}>
-      <Col xs={24} sm={24} md={12}>
+    <>
+    <Row type="flex" style={state.mode ? {height: '40%', overflow: 'scroll'} : {height: '100%'}}>
+      <Col xs={24} sm={24} md={12} className="p-3">
         <ViewTabsContainer />
       </Col>
-      <Col xs={24} sm={24} md={12} className="bl-gray">
+      <Col xs={24} sm={24} md={12} className="bl-gray p-3">
         <FormPreview />
       </Col>
     </Row>
+    </>
   )
 }
 

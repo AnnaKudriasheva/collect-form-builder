@@ -3,19 +3,22 @@ import React from 'react';
 
 import FieldOptionsContainer from '../containers/FieldOptionsContainer';
 import FormBuilderContainer from '../containers/FormBuilderContainer';
+import FormBuilderHeader from '../components/Header';
 
 import { FormContextProvider } from "../context/form-context";
 import { FormStylesContextProvider } from "../context/styles-context";
-import { Layout, PageHeader }  from '@vgs/elemente';
-const { Content } = Layout;
+import { Layout }  from '@vgs/elemente';
+
+const { Content, Footer} = Layout;
 
 const FormBuilder = () => {
   return (
     <div className="collect-form-builder-container">
       <FormContextProvider>
         <FormStylesContextProvider>
-          <Layout style={{ backgroundColor: 'white'}}>
-            <Content style={{ padding: '40px' }}>
+          <Layout style={{backgroundColor: 'white', height: '100vh'}}>
+            <FormBuilderHeader />
+            <Content>
               <FormBuilderContainer />
             </Content>
           </Layout>

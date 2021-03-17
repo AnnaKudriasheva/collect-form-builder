@@ -1,9 +1,7 @@
 import React, {useContext, useState, useEffect } from 'react';
-import getCollectJSConfiguration from '../templates/collect';
-import getCollectHTMLConfiguration from '../templates/collect-html';
-import getCollectCSSConfiguration from '../templates/collect-css';
-import CodeBlock from '../components/CodeBlock';
-import { Row, Col, Input, Select, Divider, Button, Form, Tabs } from '@vgs/elemente';
+import { Row, Col, Input, Select, Divider, Button, Tabs } from '@vgs/elemente';
+
+import { Form } from 'antd';
 
 import { FormContext } from '../context/form-context';
 
@@ -22,24 +20,24 @@ const SubmitForm = (props) => {
 
   return (
     <> 
-      <Form name="test">
+      <Form name="submit-setup" initialValues={{endpoint: '/'}} onFinish={handleFormSave}>
         <Row type="flex" gutter={24}>
          <Col xs={24} sm={24} md={24} lg={12}>
-            <Item label="HTTP Method">
+            <Item label="HTTP Method" labelCol={{span: 24}} wrapperCol={{span: 24}}>
               <Select defaultValue="POST" style={{ width: '100%' }} onChange={(value) => setHTTPMethod(value)}>
                 { ['POST', 'GET', 'PUT'].map((type, idx) => <Option value={type} key={idx}>{type}</Option>) }
               </Select>
             </Item>
           </Col>
           <Col xs={24} sm={24} md={24} lg={12}>
-            <Item label="Endpoint">
-              <Input defaultValue="/" placeholder="path" onChange={(e) => setEndpoint(e.target.value)}/>
+            <Item label="Endpoint" name="endpoint" labelCol={{span: 24}} wrapperCol={{span: 24}} rules={[{required: true}]}>
+              <Input value="/" placeholder="/path" onChange={(e) => setEndpoint(e.target.value)}/>
             </Item>
           </Col>
         </Row>
         <Row type="flex" justify="end">
           <Col>
-            <Button onClick={handleFormSave} type="primary">Save</Button>
+            <Button type="primary">Save</Button>
           </Col>
         </Row>
       </Form>

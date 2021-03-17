@@ -1,17 +1,21 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Button, Input, Select, Divider, Checkbox, Row, Col, Card, Collapse, Form } from '@vgs/elemente';
+import { Button, Input, Select, Divider, Checkbox, Row, Col, Card, Collapse, Radio } from '@vgs/elemente';
 import { Space } from 'antd';
 import CheckboxController from '../components/CheckboxController';
 import { FormContext } from '../context/form-context';
 import MultiSelect from '../components/MultiSelect';
+
+import { Form } from 'antd';
 
 import availableConfiguration from '../configs/collect_fields_configuration.json';
 import defaultCreatorValues from '../configs/collect_default_configuration.json';
 
 const { Option } = Select;
 const { Panel } = Collapse;
+const { Item } = Form;
 
 const FieldOptions = () => {
+  const [form] = Form.useForm();
   const [field, updateField] = useState(defaultCreatorValues.text);
   const [availableConfig, setAvailableConfig] = useState(availableConfiguration.text);
   const [state, dispatch] = useContext(FormContext);
@@ -27,6 +31,10 @@ const FieldOptions = () => {
 
   useEffect(() => {
     setAvailableConfig(availableConfiguration[field.type]);
+    form.setFieldsValue({
+      type: field.type,
+      name: field.name
+    })
   }, [field]);
 
   const handleTypeChange = (value) => {
@@ -59,26 +67,43 @@ const FieldOptions = () => {
   const controlButtons = (
     <Space align="center">
     <Button onClick={resetMode} type="default">Cancel</Button>
-    {state.mode === 'edit' && <Button onClick={handleUpdateClick}>Update</Button> }
-    {state.mode === 'create' && <Button onClick={handleCreateClick}>Create</Button> }
+    {state.mode === 'edit' && <Button htmlType="submit">Update</Button> }
+    {state.mode === 'create' && <Button htmlType="submit">Create</Button> }
     </Space>
   );
 
   return (
   <div className="field-options">
-    <Card title={`Field Options ${state.mode === 'edit' ? `(${field.name})`: ''}`} extra={controlButtons} style={{ width: '100%' }} bordered={false}>
+    <Form name="field-options" form={form}  onFinish={state.mode === 'edit' ? handleUpdateClick : handleCreateClick}>
+      <Card title={`Field Options ${state.mode === 'edit' ? `(${field.name})`: ''}`} extra={controlButtons} style={{ width: '100%' }} bordered={false}>
         <Row gutter={48}>
           <Col span={12}>
-            <label>*Select field type:</label>
-            <Select value={field.type} style={{ width: '100%' }} onChange={(value) => handleTypeChange(value)}>
-              { Object.keys(availableConfiguration).map((type, idx) => <Option value={type} key={idx}>{type}</Option>) }
-            </Select>
-
+            <Item label="Select field type" name="type">
+              <Select style={{ width: '100%' }} onChange={(value) => handleTypeChange(value)}>
+                { Object.keys(availableConfiguration).map((type, idx) => <Option value={type} key={idx}>{type}</Option>) }
+              </Select>
+            </Item>
           </Col>
           <Col span={12}>
-            <label>*Enter field name:</label>
-            <Input type="text" onChange={handleInputChange} id="name" value={field.name} placeholder="Field name"/>
-            <p>How this field will be named in your code</p>
+            <Item label="Enter field name" rules={[
+              {
+                required: true,
+                message: 'Please input field name!'
+              },
+              () => ({
+                validator(_, value) {
+                  const namesDuplication = state.form.filter((field) => field.name === value);
+                  if (!namesDuplication.length) {
+                    return Promise.resolve();
+                  } else {
+                    return Promise.reject(new Error('Please create a unique name!'));
+                  }
+                },
+              })
+              ]} name="name">
+              <Input type="text" onChange={handleInputChange} id="name" placeholder="Field name"/>
+            </Item>
+            <small>How this field will be named in your code</small>
           </Col>
         </Row>
         <Divider />
@@ -97,7 +122,7 @@ const FieldOptions = () => {
           </Col>
           <Col span={12}>
             <div className="form-group">
-              <label style={{ marginRight: '1rem' }}>Field validation types:</label>
+              <label style={{ marginRight: '1rem' }}>Field validation types</label>
               <MultiSelect options={availableConfig.validations} defaultValue={field.validations} handleChange={(v) => handleSelectChange(v, 'validations')} />
             </div>
             <div className="form-group">
@@ -106,6 +131,16 @@ const FieldOptions = () => {
             <div className="form-group">
               {availableConfig.hideValue && <Checkbox checked={field.hideValue} onChange={(e) => handleSelectChange(e.target.checked, 'hideValue')}>Mask CVV value</Checkbox>}
             </div>
+            {availableConfig.yearLength &&
+              <div className="form-group">
+                 <label style={{ marginRight: '1rem' }}>Year Format</label>
+                <Radio.Group name="radiogroup" defaultValue="4" onChange={(v) => handleSelectChange(v, 'yearLength')}>
+                  {availableConfig.yearLength.map((item, idx) => (
+                    <Radio value={item.value} key={idx}>{item.name}</Radio>
+                  ))}
+                </Radio.Group>
+              </div>
+              }
           </Col>
         </Row>
         <Divider />
@@ -135,7 +170,8 @@ const FieldOptions = () => {
           </Panel>
         </Collapse>
       </Card>
-    </div>
+    </Form>
+  </div>
   )
 }
 

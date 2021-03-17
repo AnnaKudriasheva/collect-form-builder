@@ -13,6 +13,7 @@ const { Item } = Form;
 const ManageForm = () => {
   const [iframeStyles, setIframeStyles] = useState({});
   const [wrapperStyles, setWrapperStyles] = useState({});
+  const [stateStyles, setStateStyles] = useState({});
   const [styles, dispatchStyles] = useContext(FormStylesContext);
 
   useEffect(() => {
@@ -23,6 +24,11 @@ const ManageForm = () => {
   const handleStylesUpdate = () => {
     dispatchStyles({ type: 'UPDATE_WRAPPER_STYLES', payload: wrapperStyles });
     dispatchStyles({ type: 'UPDATE_IFRAME_STYLES', payload: iframeStyles });
+    dispatchStyles({ type: 'UPDATE_STATE_STYLES', payload: stateStyles });
+  }
+
+  const updateStateStyles = (rule, value, unit = '') => {
+    setStateStyles({...stateStyles, rule: {color: value }});
   }
 
   const updateIframeStyles = (rule, value, unit = '') => {
@@ -65,7 +71,7 @@ const ManageForm = () => {
           <Row type="flex" justify="start" gutter={24}>
             <Col span={8}>
               <Item label="Field focused">
-                <ColorPicker placeholder="#40545F" initialValue="#40545F" onChange={(value) => setWrapperStyles({ ...wrapperStyles, '&:focus': {...wrapperStyles['&:focus'], "border-color": value }})} />
+                <ColorPicker placeholder="#40545F" initialValue="#40545F" onChange={(value) => updateStateStyles({ ...stateStyles, focused : { color: value }})} />
               </Item>
             </Col>
             <Col span={8}>

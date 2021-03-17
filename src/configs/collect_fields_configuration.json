@@ -13,6 +13,7 @@
   "card-expiration-date": {
     "validations": ["required", "validCardExpirationDate"],
     "autoComplete": ["cc-exp"],
+    "yearLength": [{"value": "2", "name": "MM / YY"}, {"value": "4", "name": "MM / YYYY"}],
     "css": {}
   },
   "card-security-code": {
@@ -24,7 +25,6 @@
   },
   "ssn": {
     "validations": ["required", "validSSN"],
-    "autoComplete": [],
     "css": {}
   },
   "zip-code": {
@@ -49,12 +49,10 @@
   },
   "checkbox": {
     "validations": ["required", "regExp"],
-    "autoComplete": [],
     "css": {}
   },
   "radio": {
     "validations": ["required", "regExp"],
-    "autoComplete": [],
     "css": {}
   }
 }

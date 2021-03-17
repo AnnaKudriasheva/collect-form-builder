@@ -18,6 +18,29 @@ const initialState = {
       "color": "#C8D0DB"
     },
   },
+  state: {
+    focused: {
+
+    },
+    active: {
+
+    },
+    empty: {
+
+    },
+    touched: {
+
+    },
+    valid: {
+
+    },
+    invalid: {
+
+    },
+    dirty: {
+      
+    }
+  }
 };
 
 const reducer = (state, action) => {
@@ -32,6 +55,11 @@ const reducer = (state, action) => {
         ...state,
         wrapper: action.payload
       };
+    case "UPDATE_STATE_STYLES":
+      return {
+        ...state,
+        state: action.payload
+      }
     default:
       return state;
   }
