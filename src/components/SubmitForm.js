@@ -31,13 +31,13 @@ const SubmitForm = (props) => {
           </Col>
           <Col xs={24} sm={24} md={24} lg={12}>
             <Item label="Endpoint" name="endpoint" labelCol={{span: 24}} wrapperCol={{span: 24}} rules={[{required: true}]}>
-              <Input value="/" placeholder="/path" onChange={(e) => setEndpoint(e.target.value)}/>
+              <Input placeholder="/path" onChange={(e) => setEndpoint(e.target.value)}/>
             </Item>
           </Col>
         </Row>
         <Row type="flex" justify="end">
           <Col>
-            <Button type="primary">Save</Button>
+            <Button type="primary" htmlType="submit">Save</Button>
           </Col>
         </Row>
       </Form>

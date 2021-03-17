@@ -16,7 +16,7 @@ const getCollectConfiguration = (state, styles) => {
         `}
       ).join('\n')
     }\n
-    form.submit('${state.httpMethod}', { method: '${state.endpoint}'}, (status, data) => { console.log(data) });
+    form.submit('${state.endpoint}', { method: '${state.httpMethod}'}, (status, data) => { console.log(data) });
     `.trim();
 };
 
