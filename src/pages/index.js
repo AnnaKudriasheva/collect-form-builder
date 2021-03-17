@@ -9,7 +9,7 @@ import { FormContextProvider } from "../context/form-context";
 import { FormStylesContextProvider } from "../context/styles-context";
 import { Layout }  from '@vgs/elemente';
 
-const { Content, Footer} = Layout;
+const { Content } = Layout;
 
 const FormBuilder = () => {
   return (
