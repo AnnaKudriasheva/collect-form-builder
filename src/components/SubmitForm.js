@@ -10,8 +10,8 @@ const { Item } = Form;
 
 const SubmitForm = (props) => {
   const [state, dispatch] = useContext(FormContext);
-  const [httpMethod, setHTTPMethod] = useState(false);
-  const [endpoint, setEndpoint] = useState('');
+  const [httpMethod, setHTTPMethod] = useState('POST');
+  const [endpoint, setEndpoint] = useState('/');
 
   const handleFormSave = () => {
     dispatch({ type: "SET_HTTP_METHOD", payload: httpMethod });
