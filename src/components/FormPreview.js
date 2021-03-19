@@ -9,10 +9,16 @@ import { FormStylesContext } from '../context/styles-context';
 
 const useStyles = createUseStyles({
   containerFocused: props => ({
-    "& .vgs-collect-container__focused": props.state.focused
+    "& .vgs-collect-container__focused": {
+      borderColor: props.state.focused['border-color'] || 'initial',
+      boxShadow: props.state.focused['box-shadow'] || 'none',
+    }
   }),
   containerInvalid: props => ({
-    "& .vgs-collect-container__invalid.vgs-collect-container__dirty:not(.vgs-collect-container__focused)": props.state.invalid,
+    "& .vgs-collect-container__invalid.vgs-collect-container__dirty:not(.vgs-collect-container__focused)": {
+      borderColor: props.state.invalid['border-color'] || 'initial',
+      boxShadow: props.state.invalid['box-shadow'] || 'none',
+    }
   }),
   wrapper: props => (props.wrapper)
 });
