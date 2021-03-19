@@ -90,7 +90,7 @@ const FieldOptions = () => {
                 required: true,
                 message: 'Please input field name!'
               },
-              () => ({
+              () => (state.mode === 'create' && {
                 validator(_, value) {
                   const namesDuplication = state.form.filter((field) => field.name === value);
                   if (!namesDuplication.length) {
