@@ -1,11 +1,13 @@
 import React from 'react';
 import ColorPicker from '../ColorPicker';
-import {  Row, Col, Select, Form, Input } from '@vgs/elemente';
+import {  Row, Col, Select, InputNumber } from '@vgs/elemente';
+import { Form } from 'antd'
+
+import { numericValidation } from '../../utils/validation';
+import { systemFonts } from '../../utils/constants';
 
 const { Option } = Select;
 const { Item } = Form;
-
-const systemFonts = ["Arial, sans-serif", "Verdana, sans-serif", "Helvetica, sans-serif", "Tahoma, sans-serif", "Trebuchet, sans-serif", "Georgia, serif", "Garamond, serif", "Courier New, monospace", ""];
 
 const TextOptions = (props) => {
   const { updateIframeStyles } = props;
@@ -13,7 +15,7 @@ const TextOptions = (props) => {
     <>
       <Row type="flex" gutter={24}>
         <Col span={24}>
-          <Item label="Font Family">
+          <Item label="Font Family" name="font-family" wrapperCol={{span: 24}} labelCol={{span: 24}}>
               <Select defaultValue="Arial, sans-serif" style={{ width: '100%' }} onChange={(value) => updateIframeStyles('font-family', value)}>
                 { systemFonts.map((type, idx) => <Option value={type} key={idx}>{type}</Option>) }
               </Select>
@@ -23,22 +25,22 @@ const TextOptions = (props) => {
       </Row>
       <Row type="flex" gutter={24}>
         <Col span={8}>
-          <Item label="Font Size">
+          <Item label="Font Size" name="font-size" wrapperCol={{span: 24}} labelCol={{span: 24}} rules={[numericValidation]}>
             <div className="d-flex align-center">
-              <Input defaultValue="16" placeholder="16" onChange={(e) => updateIframeStyles('font-size', e.target.value, 'px') }/>
+              <InputNumber defaultValue={16} placeholder="16" onChange={(value) => updateIframeStyles('font-size', value, 'px') }/>
               <span style={{ marginLeft: '8px' }}>px</span>
             </div>
           </Item>
         </Col>
         <Col span={8}>
-          <Item label="Font Weight">
-            <Input defaultValue="400" placeholder="100" onChange={(e) => updateIframeStyles('font-weight', e.target.value) }/>
+          <Item label="Font Weight" name="font-weight" wrapperCol={{span: 24}} labelCol={{span: 24}} rules={[numericValidation]}>
+            <InputNumber step={100} placeholder="100" onChange={(value) => updateIframeStyles('font-weight', value) }/>
           </Item>
         </Col>
         <Col span={8}>
-          <Item label="Line Height">
+          <Item label="Line Height" name="line-height" wrapperCol={{span: 24}} labelCol={{span: 24}} rules={[numericValidation]}>
             <div className="d-flex align-center">
-              <Input placeholder="16" onChange={(e) => updateIframeStyles('line-height', e.target.value, 'px') }/>
+              <InputNumber placeholder="16" onChange={(value) => updateIframeStyles('line-height', value, 'px') }/>
               <span style={{ marginLeft: '8px' }}>px</span>
             </div>
           </Item>

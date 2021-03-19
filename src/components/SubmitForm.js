@@ -1,8 +1,6 @@
 import React, {useContext, useState, useEffect } from 'react';
 import { Row, Col, Input, Select, Divider, Button, Tabs } from '@vgs/elemente';
-
 import { Form } from 'antd';
-
 import { FormContext } from '../context/form-context';
 
 const { Option } = Select;

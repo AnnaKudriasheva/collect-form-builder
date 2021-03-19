@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FormStylesContext } from '../context/styles-context';
-import { Collapse, Form, Row, Col, Button } from '@vgs/elemente';
+import { Collapse, Row, Col, Button } from '@vgs/elemente';
+import { Form } from 'antd';
 import ColorPicker from '../components/ColorPicker';
 
 import TextOptions from '../components/FormStyles/TextOptions';
 import BordersShadows from '../components/FormStyles/BordersShadows';
 import BoxModel from '../components/FormStyles/BoxModel';
+import StateStyles from '../components/FormStyles/StateStyles';
 
 const { Panel } = Collapse;
 const { Item } = Form;
@@ -19,7 +21,8 @@ const ManageForm = () => {
   useEffect(() => {
     setIframeStyles(styles.iframe);
     setWrapperStyles(styles.wrapper);
-  }, styles);
+    setStateStyles(styles.state);
+  }, [styles]);
 
   const handleStylesUpdate = () => {
     dispatchStyles({ type: 'UPDATE_WRAPPER_STYLES', payload: wrapperStyles });
@@ -27,8 +30,8 @@ const ManageForm = () => {
     dispatchStyles({ type: 'UPDATE_STATE_STYLES', payload: stateStyles });
   }
 
-  const updateStateStyles = (rule, value, unit = '') => {
-    setStateStyles({...stateStyles, rule: {color: value }});
+  const updateStateStyles = (state, rule) => {
+    setStateStyles({...stateStyles, [state]: { ...styles.state[state], ...rule }});
   }
 
   const updateIframeStyles = (rule, value, unit = '') => {
@@ -55,35 +58,41 @@ const ManageForm = () => {
     }
   }
 
+  const onUncheckedControlCheckbox = (state) => {
+    setStateStyles({...stateStyles, [state]: {}});
+  }
+
   return (
     <>
-      <Collapse defaultActiveKey={["1"]} className="form-builder-collapse">
-        <Panel header="Text options" key="1">
-          <TextOptions updateIframeStyles={updateIframeStyles} />
-        </Panel>
-        <Panel header="Field borders and shadows" key="2">
-          <BordersShadows updateWrapperStyles={updateWrapperStyles}/>
-        </Panel>
-        <Panel header="Box model" key="3">
-          <BoxModel updateWrapperStyles={updateWrapperStyles} />
-        </Panel>
-        <Panel header="Form colors" key="4">
-          <Row type="flex" justify="start" gutter={24}>
-            <Col span={8}>
-              <Item label="Field focused">
-                <ColorPicker placeholder="#40545F" initialValue="#40545F" onChange={(value) => updateStateStyles({ ...stateStyles, focused : { color: value }})} />
-              </Item>
-            </Col>
-            <Col span={8}>
-            </Col>
-          </Row>
-        </Panel>
-      </Collapse>
-      <Row type="flex" justify="end" className="mb-2">
-        <Col>
-          <Button onClick={handleStylesUpdate} type="primary">Save</Button>
-        </Col>
-      </Row>
+      <Form name="style-form" onFinish={handleStylesUpdate} initialValues={
+        {
+          "border-style": "solid",
+          "focused-box-shadow": styles.state.focused['box-shadow'] || '',
+          "focused-border-color": styles.state.focused['border-color'] || '',
+          "invalid-box-shadow": styles.state.invalid['box-shadow'] || '',
+          "invalid-border-color": styles.state.invalid['border-color'] || '',
+        }
+        }>
+        <Collapse defaultActiveKey={["1"]} className="form-builder-collapse" accordion>
+          <Panel header="Text options" key="1">
+            <TextOptions updateIframeStyles={updateIframeStyles} />
+          </Panel>
+          <Panel header="Field borders and shadows" key="2">
+            <BordersShadows updateWrapperStyles={updateWrapperStyles}/>
+          </Panel>
+          <Panel header="Box model" key="3">
+            <BoxModel updateWrapperStyles={updateWrapperStyles} />
+          </Panel>
+          <Panel header="Form colors" key="4">
+            <StateStyles updateStateStyles={updateStateStyles} styles={styles.state} onUnchecked={onUncheckedControlCheckbox}/>
+          </Panel>
+        </Collapse>
+        <Row type="flex" justify="end" className="mb-2">
+          <Col>
+            <Button htmlType="submit" type="primary">Apply changes</Button>
+          </Col>
+        </Row>
+      </Form>
     </>
   )
 }

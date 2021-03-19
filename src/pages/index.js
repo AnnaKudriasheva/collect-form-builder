@@ -7,7 +7,8 @@ import FormBuilderHeader from '../components/Header';
 
 import { FormContextProvider } from "../context/form-context";
 import { FormStylesContextProvider } from "../context/styles-context";
-import { Layout }  from '@vgs/elemente';
+import { Layout, Drawer }  from '@vgs/elemente';
+import FormBuilderDrawer from '../components/FormBuilderDrawer';
 
 const { Content } = Layout;
 
@@ -16,6 +17,7 @@ const FormBuilder = () => {
     <div className="collect-form-builder-container">
       <FormContextProvider>
         <FormStylesContextProvider>
+          <FormBuilderDrawer />
           <Layout style={{backgroundColor: 'white', height: '100vh'}}>
             <FormBuilderHeader />
             <Content>

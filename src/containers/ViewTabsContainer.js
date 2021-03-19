@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Tabs } from '@vgs/elemente';
+import { Tabs, Button } from '@vgs/elemente';
 
 import FormLayout from '../components/FormLayout';
 import ManageForm from '../components/ManageForm';
@@ -12,20 +12,26 @@ const { TabPane } = Tabs;
 const ViewTabsContainer = () => {
   const [state, dispatch] = useContext(FormContext);
   return (
-    <Tabs defaultActiveKey="1" animated={false} onChange={() => dispatch({ type: 'SET_MODE', payload: '' })}>
-      <TabPane tab="Create Fields" key="1">
+    <>
+    <h3 style={{ marginBottom: '2rem', textAlign: 'center' }}>
+      VGS Collect.js Form Builder
+      <Button className="round-btn" type="outlined" onClick={() => dispatch({type: 'SET_DRAWER_STATE', payload: true})}>?</Button>
+    </h3>
+    <Tabs defaultActiveKey="1" animated={false} onChange={() => dispatch({type: 'SET_MODE', payload: ''})}>
+      <TabPane tab="1. Create Fields" key="1">
         <FormLayout />
       </TabPane>
-      <TabPane tab="Style Form" key="2">
+      <TabPane tab="2. Style Form" key="2">
         <ManageForm />
       </TabPane>
-      <TabPane tab="Submit Form" key="3">
+      <TabPane tab="3. Submit Form" key="3">
         <SubmitForm />
       </TabPane>
-      <TabPane tab="Get Code" key="4">
+      <TabPane tab="4. Get Code" key="4">
         <GetCode />
       </TabPane>
     </Tabs>
+    </>
   )
 }
 

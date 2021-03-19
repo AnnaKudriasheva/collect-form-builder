@@ -9,6 +9,12 @@ const CheckboxController = (props) => {
     setChecked(props.checked);
   }, [props.checked]);
 
+  useEffect(() => {
+    if (!checked && props.onUnchecked) {
+      props.onUnchecked();
+    }
+  }, [checked])
+
   return (
     <Row>
       <Col span={24} className="mb-1">

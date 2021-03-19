@@ -48,6 +48,7 @@ const initialState = {
   isLoading: false,
   httpMethod: 'POST',
   endpoint: '/',
+  showDrawer: false,
 };
 
 const reducer = (state, action) => {
@@ -89,6 +90,8 @@ const reducer = (state, action) => {
       return { ...state, httpMethod: action.payload };
     case "SET_ENDPOINT":
       return { ...state, endpoint: action.payload };
+      case "SET_DRAWER_STATE":
+        return { ...state, showDrawer: action.payload };
     default:
       return state;
   }

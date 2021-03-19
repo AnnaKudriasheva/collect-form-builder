@@ -2,11 +2,8 @@ import endent from 'endent';
 
 const stringify = (obj_from_json) => {
 	if (typeof obj_from_json !== "object" || Array.isArray(obj_from_json)){
-    	// not an object, stringify using native function
     	return JSON.stringify(obj_from_json);
     }
-    // Implements recursive object serialization according to JSON spec
-    // but without quotes around the keys.
     let props = Object
     	.keys(obj_from_json)
         .map(key => obj_from_json[key] && `${key}: ${obj_from_json[key]};`)
@@ -15,8 +12,16 @@ const stringify = (obj_from_json) => {
 }
 
 
-const getCollectCSSConfiguration = (state, styles) => {
-  const rules = stringify(styles);
+const getCollectCSSConfiguration = (styles) => {
+  let { wrapper, state } = styles;
+
+  if (!wrapper['border-width']) {
+    delete wrapper['border-width'];
+    delete wrapper['border-color'];
+    delete wrapper['border-style'];
+  }
+
+  const rules = stringify(wrapper);
   return endent`
     iframe {
       width: 100%;
@@ -24,6 +29,18 @@ const getCollectCSSConfiguration = (state, styles) => {
     }
     .field-wrapper {
       ${rules}
+    }
+    .vgs-collect-container__focused {
+      ${
+        Object.keys(state.focused).length &&
+        stringify(state.focused)
+      }
+    }
+    .vgs-collect-container__invalid.vgs-collect-container__dirty:not(.vgs-collect-container__focused) {
+      ${
+        Object.keys(state.invalid).length &&
+        stringify(state.invalid)
+      }
     }
     `.trim();
 };

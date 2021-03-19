@@ -25,6 +25,7 @@
   },
   "ssn": {
     "validations": ["required", "validSSN"],
+    "hideValue": ["true", "false"],
     "css": {}
   },
   "zip-code": {

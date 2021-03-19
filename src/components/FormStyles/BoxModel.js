@@ -1,10 +1,12 @@
 import React from 'react';
-import {  Row, Col, Select, Form, Input } from '@vgs/elemente';
+import {  Row, Col, Select, Input, InputNumber } from '@vgs/elemente';
+import { Form } from 'antd';
+
+import { numericValidation } from '../../utils/validation';
+import { boxSizing } from '../../utils/constants';
 
 const { Option } = Select;
 const { Item } = Form;
-
-const boxSizing = ['border-box', 'content-box', 'inherit', 'initial'];
 
 const BoxModel = (props) => {
   const { updateWrapperStyles } = props;
@@ -32,33 +34,33 @@ const BoxModel = (props) => {
       <h4>Padding</h4>
       <Row type="flex" gutter={24}>
         <Col span={6}>
-          <Item label="Top">
+          <Item label="Top" name="padding-top" wrapperCol={{span: 24}} labelCol={{span: 24}} rules={[numericValidation]}>
             <div className="d-flex align-center">
-              <Input placeholder="0" type="number" onChange={(e) => updateWrapperStyles("padding-top", e.target.value, 'px') }/>
+              <InputNumber defaultValue={6} placeholder="0" onChange={(value) => updateWrapperStyles("padding-top", value, 'px') }/>
               <span style={{ marginLeft: '8px' }}>px</span>
             </div>
           </Item>
         </Col>
         <Col span={6}>
-          <Item label="Right">
+          <Item label="Right" name="padding-right" wrapperCol={{span: 24}} labelCol={{span: 24}} rules={[numericValidation]}>
             <div className="d-flex align-center">
-              <Input placeholder="0" type="number" onChange={(e) => updateWrapperStyles("padding-right", e.target.value, 'px') }/>
+              <InputNumber defaultValue={12} placeholder="0" onChange={(value) => updateWrapperStyles("padding-right", value, 'px') }/>
               <span style={{ marginLeft: '8px' }}>px</span>
             </div>
           </Item>
         </Col>
         <Col span={6}>
-          <Item label="Bottom">
+          <Item label="Bottom" name="padding-bottom" wrapperCol={{span: 24}} labelCol={{span: 24}} rules={[numericValidation]}>
            <div className="d-flex align-center">
-              <Input placeholder="0" type="number" onChange={(e) => updateWrapperStyles("padding-bottom", e.target.value, 'px') }/>
+              <InputNumber defaultValue={6} placeholder="0" onChange={(value) => updateWrapperStyles("padding-bottom", value, 'px') }/>
               <span style={{ marginLeft: '8px' }}>px</span>
             </div>
           </Item>
         </Col>
         <Col span={6}>
-          <Item label="Left">
+          <Item label="Left" name="padding-left" wrapperCol={{span: 24}} labelCol={{span: 24}} rules={[numericValidation]}>
             <div className="d-flex align-center">
-              <Input placeholder="0" type="number" onChange={(e) => updateWrapperStyles("padding-left", e.target.value, 'px') }/>
+              <InputNumber defaultValue={12} placeholder="0" onChange={(value) => updateWrapperStyles("padding-left", value, 'px') }/>
               <span style={{ marginLeft: '8px' }}>px</span>
             </div>
           </Item>
@@ -67,33 +69,33 @@ const BoxModel = (props) => {
       <h4>Margin</h4>
       <Row type="flex" gutter={24}>
         <Col span={6}>
-          <Item label="Top">
+          <Item label="Top" name="margin-top" wrapperCol={{span: 24}} labelCol={{span: 24}} rules={[numericValidation]}>
             <div className="d-flex align-center">
-              <Input placeholder="0" type="number" onChange={(e) => updateWrapperStyles("margin-top", e.target.value, 'px') }/>
+              <InputNumber placeholder="0" onChange={(value) => updateWrapperStyles("margin-top", value, 'px') }/>
               <span style={{ marginLeft: '8px' }}>px</span>
             </div>
           </Item>
         </Col>
         <Col span={6}>
-          <Item label="Right">
+          <Item label="Right" name="margin-right" wrapperCol={{span: 24}} labelCol={{span: 24}} rules={[numericValidation]}>
             <div className="d-flex align-center">
-              <Input placeholder="0" type="number" onChange={(e) => updateWrapperStyles("margin-right", e.target.value, 'px') }/>
+              <InputNumber placeholder="0" onChange={(value) => updateWrapperStyles("margin-right", value, 'px') }/>
               <span style={{ marginLeft: '8px' }}>px</span>
             </div>
           </Item>
         </Col>
         <Col span={6}>
-          <Item label="Bottom">
+          <Item label="Bottom" name="margin-bottom" wrapperCol={{span: 24}} labelCol={{span: 24}} rules={[numericValidation]}>
             <div className="d-flex align-center">
-              <Input placeholder="0" type="number" onChange={(e) => updateWrapperStyles("margin-bottom", e.target.value, 'px') }/>
+              <InputNumber defaultValue={16} placeholder="0" onChange={(value) => updateWrapperStyles("margin-bottom", value, 'px') }/>
               <span style={{ marginLeft: '8px' }}>px</span>
             </div>
           </Item>
         </Col>
         <Col span={6}>
-          <Item label="Left">
+          <Item label="Left" name="margin-left" wrapperCol={{span: 24}} labelCol={{span: 24}} rules={[numericValidation]}>
             <div className="d-flex align-center">
-              <Input placeholder="0" type="number" onChange={(e) => updateWrapperStyles("margin-left", e.target.value, 'px') }/>
+              <InputNumber placeholder="0" onChange={(value) => updateWrapperStyles("margin-left", value, 'px') }/>
               <span style={{ marginLeft: '8px' }}>px</span>
             </div>
           </Item>

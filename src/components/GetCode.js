@@ -30,7 +30,7 @@ const GetCode = (props) => {
   const updateCodeExamples = () => {
     updateJSCode(getCollectJSConfiguration(state, styles.iframe));
     updateHTMLCode(getCollectHTMLConfiguration(state, styles.iframe));
-    updateCSSCode(getCollectCSSConfiguration(state, styles.wrapper));
+    updateCSSCode(getCollectCSSConfiguration(styles));
   }
 
   const handleFormSubmit = () => {

@@ -129,7 +129,7 @@ const FieldOptions = () => {
               {availableConfig.showCardIcon && <Checkbox checked={field.showCardIcon} onChange={(e) => handleSelectChange(e.target.checked, 'showCardIcon')}>Show card icon</Checkbox>}
             </div>
             <div className="form-group">
-              {availableConfig.hideValue && <Checkbox checked={field.hideValue} onChange={(e) => handleSelectChange(e.target.checked, 'hideValue')}>Mask CVV value</Checkbox>}
+              {availableConfig.hideValue && <Checkbox checked={field.hideValue} onChange={(e) => handleSelectChange(e.target.checked, 'hideValue')}>Mask input value</Checkbox>}
             </div>
             {availableConfig.yearLength &&
               <div className="form-group">
@@ -144,7 +144,7 @@ const FieldOptions = () => {
           </Col>
         </Row>
         <Divider />
-        <Collapse className="form-builder-collapse">
+        <Collapse className="form-builder-collapse" accordion>
           <Panel header="Advanced field options" key="1">
           <Row gutter={48}>
             <Col span={12}>
