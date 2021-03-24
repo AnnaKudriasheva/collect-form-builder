@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { FormStylesContext } from '../context/styles-context';
 import { Collapse, Row, Col, Button } from '@vgs/elemente';
 import { Form } from 'antd';
-import ColorPicker from '../components/ColorPicker';
 
 import TextOptions from '../components/FormStyles/TextOptions';
 import BordersShadows from '../components/FormStyles/BordersShadows';
@@ -10,9 +9,8 @@ import BoxModel from '../components/FormStyles/BoxModel';
 import StateStyles from '../components/FormStyles/StateStyles';
 
 const { Panel } = Collapse;
-const { Item } = Form;
 
-const ManageForm = () => {
+const StlyeForm = () => {
   const [iframeStyles, setIframeStyles] = useState({});
   const [wrapperStyles, setWrapperStyles] = useState({});
   const [stateStyles, setStateStyles] = useState({});
@@ -83,7 +81,7 @@ const ManageForm = () => {
           <Panel header="Box model" key="3">
             <BoxModel updateWrapperStyles={updateWrapperStyles} />
           </Panel>
-          <Panel header="Form colors" key="4">
+          <Panel header="Form state colors" key="4">
             <StateStyles updateStateStyles={updateStateStyles} styles={styles.state} onUnchecked={onUncheckedControlCheckbox}/>
           </Panel>
         </Collapse>
@@ -97,4 +95,4 @@ const ManageForm = () => {
   )
 }
 
-export default ManageForm;
+export default StlyeForm;

@@ -10,12 +10,12 @@ const { Header } = Layout;
 
 const FormBuilderHeader = () => {
   return (
-    <Header style={{backgroundColor: 'white', boxShadow: '0px 0px 6px rgb(23 31 39 / 30%'}}>
-      <Row type="flex" style={{maxWidth: '1140px', margin: '0 auto'}}>
+    <Header style={{ backgroundColor: 'white', boxShadow: '0px 0px 6px rgb(23 31 39 / 30%' }}>
+      <Row type="flex" style={{ maxWidth: '1140px', margin: '0 auto' }}>
         <Col span={12}>
           <div className="d-flex">
-            <a href="https://www.verygoodsecurity.com/" target="_blank" style={{display: 'block', width: '215px'}}>
-              <VGSLogo width="100%" style={{ verticalAlign: 'middle'}}/>
+            <a href="https://www.verygoodsecurity.com/" target="_blank" style={{ display: 'block', width: '215px' }}>
+              <VGSLogo width="100%" style={{ verticalAlign: 'middle' }}/>
             </a>
           </div>
         </Col>
@@ -25,7 +25,7 @@ const FormBuilderHeader = () => {
               <Button type="primary" icon={<BookOutlined />}>Documentation</Button>
             </a>
             <a href="https://dashboard.verygoodsecurity.com" target="_blank">
-              <Button type="outlined" icon={<LoginOutlined />}>Log in</Button>
+              <Button type="default" icon={<LoginOutlined />}>Log in</Button>
             </a>
           </div>
         </Col>

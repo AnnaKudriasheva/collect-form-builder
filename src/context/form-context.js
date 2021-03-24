@@ -1,45 +1,10 @@
 import React, { useReducer, createContext } from 'react';
+import { payment_form_config } from '../templates/payment_form_config_template';
+import { login_form_config } from '../templates/login_form_config_template';
 export const FormContext = createContext();
 
 const initialState = {
-  form: [
-    {
-      id: '0',
-      label: 'Cardholder Name:',
-      name: 'cardholder-name',
-      type: 'text',
-      placeholder: 'Cardholder name',
-      validations: ['required'],
-      autoComplete: "cc-name",
-    },
-    {
-      id: '1',
-      label: 'Card number:',
-      name: 'card-number',
-      type: 'card-number',
-      placeholder: '0000 0000 0000 0000',
-      validations: ['required', 'validCardNumber'],
-      showCardIcon: 'true',
-      autoComplete: "cc-number",
-    },
-    {
-      id: '2',
-      label: 'Expiration Date:',
-      name: 'card-expiration-date',
-      type: 'card-expiration-date',
-      placeholder: 'MM / YY',
-      validations: ['required', 'validCardExpirationDate'],
-      autoComplete: "cc-exp",
-    },
-    {
-      id: '3',
-      label: 'Card Security Code:',
-      name: 'card-security-code',
-      type: 'card-security-code',
-      placeholder: 'CVV',
-      validations: ['required', 'validCardSecurityCode'],
-      autoComplete: "cc-csc",
-  }],
+  form: payment_form_config,
   currentActiveField: {},
   mode: '',
   previewLoading: false,
@@ -49,6 +14,7 @@ const initialState = {
   httpMethod: 'POST',
   endpoint: '/',
   showDrawer: false,
+  showTemplatesDrawer: false,
 };
 
 const reducer = (state, action) => {
@@ -90,8 +56,14 @@ const reducer = (state, action) => {
       return { ...state, httpMethod: action.payload };
     case "SET_ENDPOINT":
       return { ...state, endpoint: action.payload };
-      case "SET_DRAWER_STATE":
+    case "SET_DRAWER_STATE":
         return { ...state, showDrawer: action.payload };
+    case "SET_TEMPLATES_DRAWER":
+      return { ...state, showTemplatesDrawer: action.payload };
+    case "SET_TEMPLATE":
+      return { ...state, 
+        form: action.payload
+      };
     default:
       return state;
   }

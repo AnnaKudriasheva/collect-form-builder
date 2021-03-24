@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Button, Row, Col } from '@vgs/elemente';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import Icon, { PlusOutlined } from '@ant-design/icons';
+import Icon, { PlusOutlined, SelectOutlined } from '@ant-design/icons';
 
 import DeleteIcon from '../images/delete.svg';
 import DragDropIcon from '../images/drag-drop.svg';
@@ -66,11 +66,21 @@ const FormLayout = () => {
 
   return (
     <div className="create-fields-container">
-      <div onClick={handleItemAdd} className={`field-layout d-flex j-space-between align-center add-new-field-btn mb-2 ${state.mode === 'create' ? 'outlined' : ''}`}>
-        <span>Add new field</span>
-        <PlusOutlined style={{ fontSize: '24px'}}/>
-      </div>
+      <Row gutter={16}>
+        <Col span={12}>
+          <div onClick={() => dispatch({type: 'SET_TEMPLATES_DRAWER', payload: true})} className={`field-layout d-flex j-space-between align-center add-new-field-btn mb-2`}>
+            <span>Choose from template</span>
+            <SelectOutlined style={{ fontSize: '24px'}}/>
+          </div>
+        </Col>
+        <Col span={12}>
+          <div onClick={handleItemAdd} className={`field-layout d-flex j-space-between align-center add-new-field-btn mb-2 ${state.mode === 'create' ? 'outlined' : ''}`}>
+            <span>Add new field</span>
+            <PlusOutlined style={{ fontSize: '24px'}}/>
+          </div>
+        </Col>
 
+      </Row>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (

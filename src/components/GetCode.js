@@ -1,16 +1,18 @@
 import React, {useContext, useState, useEffect } from 'react';
+
 import getCollectJSConfiguration from '../templates/collect';
 import getCollectHTMLConfiguration from '../templates/collect-html';
 import getCollectCSSConfiguration from '../templates/collect-css';
+import getRouteConfig from '../templates/inbound-route';
+import { COLLECT_ENVS } from '../utils/constants';
+
 import CodeBlock from '../components/CodeBlock';
-import { Row, Col, Input, Select, Divider, Button, Tabs } from '@vgs/elemente';
+import FormField from '../components/FormField';
+import { Row, Col, Select, Divider, Button, Tabs } from '@vgs/elemente';
+import { Form } from 'antd';
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
-
-
-import getRouteConfig from '../templates/inbound-route';
 import yaml from 'js-yaml';
-import { Form } from 'antd';
 
 import { FormContext } from '../context/form-context';
 import { FormStylesContext } from '../context/styles-context';
@@ -21,7 +23,7 @@ const { TabPane } = Tabs;
 
 const GetCode = (props) => {
   const [state, dispatch] = useContext(FormContext);
-  const [styles, dispatchStyles] = useContext(FormStylesContext);
+  const [styles] = useContext(FormStylesContext);
   const [showCode, setShowCode] = useState(false);
   const [jsCode, updateJSCode] = useState('');
   const [htmlCode, updateHTMLCode] = useState('');
@@ -40,7 +42,7 @@ const GetCode = (props) => {
 
   const handleYAMLDownload = () => {
     const yamlConfig = yaml.dump(getRouteConfig(state));
-    const file = new File([yamlConfig], 'test.yaml', { type: 'text/plain;charset=utf-8' });
+    const file = new File([yamlConfig], 'collect.yaml', { type: 'text/plain;charset=utf-8' });
     saveAs(file, 'collect.yaml');
   }
 
@@ -62,17 +64,15 @@ const GetCode = (props) => {
 
   return (
     <> 
-      <Form name="test" initialValues={{ environment: 'sandbox' }} onFinish={handleFormSubmit}>
+      <Form name="get-code" initialValues={{ environment: 'sandbox' }} onFinish={handleFormSubmit}>
         <Row type="flex" gutter={24}>
           <Col xs={24} sm={24} md={24} lg={12}>
-            <Item label="Vault ID" name="vault-id" labelCol={{span: 24}} wrapperCol={{span: 24}} rules={[{required: true}]}>
-              <Input placeholder="tntXXXXXXXX" onChange={(e) => dispatch({ type: "SET_VAULT_ID", payload: e.target.value })}/>
-            </Item>
+            <FormField label="Vault ID" name="vault-id" validation={{required: true}} placeholder="tntXXXXXXXX" onChange={(e) => dispatch({ type: "SET_VAULT_ID", payload: e.target.value })}/>
           </Col>
           <Col xs={24} sm={24} md={24} lg={12}>
             <Item label="Environment" name="environment" wrapperCol={{span: 24}} labelCol={{span: 24}}>
               <Select style={{ width: '100%' }} onChange={(value) => dispatch({ type: "SET_ENV", payload: value })}>
-                { ['sandbox', 'live', 'live-eu-1'].map((type, idx) => <Option value={type} key={idx}>{type}</Option>) }
+                { COLLECT_ENVS.map((type, idx) => <Option value={type} key={idx}>{type}</Option>)}
               </Select>
             </Item>
           </Col>

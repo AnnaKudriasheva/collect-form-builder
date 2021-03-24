@@ -3,29 +3,30 @@ import { Row, Col, Checkbox, Tooltip } from '@vgs/elemente';
 import InfoTooltip from '../components/InfoTooltip';
 
 const CheckboxController = (props) => {
-  const [checked, setChecked] = useState(false);
+  const { checked, onUnchecked } = props;
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
-    setChecked(props.checked);
-  }, [props.checked]);
+    setIsChecked(checked);
+  }, [checked]);
 
   useEffect(() => {
-    if (!checked && props.onUnchecked) {
-      props.onUnchecked();
+    if (!isChecked && props.onUnchecked) {
+      onUnchecked();
     }
-  }, [checked])
+  }, [isChecked])
 
   return (
     <Row>
       <Col span={24} className="mb-1">
-        <Checkbox checked={checked} onChange={(e) => setChecked(e.target.checked)}>
+        <Checkbox checked={isChecked} onChange={(e) => setIsChecked(e.target.checked)}>
           {props.label}
           <InfoTooltip title="Test" />
         </Checkbox>
       </Col>
       <Col span={24}>
         <div style={{ maxWidth: '400px', marginLeft: '1.5rem' }}>
-          {checked && props.children}
+          {isChecked && props.children}
         </div>
       </Col>
     </Row>

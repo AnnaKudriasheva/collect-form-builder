@@ -20,6 +20,7 @@ const FormBuilderDrawer = () => {
       placement="right"
       closable={false}
       visible={visible}
+      width="500"
       onClose={() =>  dispatch({type: 'SET_DRAWER_STATE', payload: false})}
       key="right"
     >

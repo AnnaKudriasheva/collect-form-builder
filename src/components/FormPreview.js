@@ -77,7 +77,7 @@ const FormPreview = () => {
   const initCollectFields = (form) => {
     state.form.forEach(field => {
       const { id, label, ...params } = field;
-      form.field(`#${field.name.split(' ').join('-').toLowerCase()}`, {...params, css: styles.iframe});
+      form.field(`#${field.name.split(' ').join('-').toLowerCase()}`, { ...params, css: styles.iframe });
     });
     setForm(form);
   }

@@ -1,0 +1,38 @@
+export const payment_form_config = [
+  {
+    id: '0',
+    label: 'Cardholder Name:',
+    name: 'cardholder-name',
+    type: 'text',
+    placeholder: 'Cardholder name',
+    validations: ['required'],
+    autoComplete: "cc-name",
+  },
+  {
+    id: '1',
+    label: 'Card number:',
+    name: 'card-number',
+    type: 'card-number',
+    placeholder: '0000 0000 0000 0000',
+    validations: ['required', 'validCardNumber'],
+    showCardIcon: 'true',
+    autoComplete: "cc-number",
+  },
+  {
+    id: '2',
+    label: 'Expiration Date:',
+    name: 'card-expiration-date',
+    type: 'card-expiration-date',
+    placeholder: 'MM / YY',
+    validations: ['required', 'validCardExpirationDate'],
+    autoComplete: "cc-exp",
+  },
+  {
+    id: '3',
+    label: 'Card Security Code:',
+    name: 'card-security-code',
+    type: 'card-security-code',
+    placeholder: 'CVV',
+    validations: ['required', 'validCardSecurityCode'],
+    autoComplete: "cc-csc",
+}];
