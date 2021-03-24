@@ -2,7 +2,7 @@
   VGS Collect.js Form Builder
 </h1>
 
-## 🚀 Instant Collect.jsForm Builder
+## 🚀 Instant Collect.js Form Builder
 
 1.  **Start developing**
 
