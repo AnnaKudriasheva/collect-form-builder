@@ -1,12 +1,13 @@
-import React, {useContext, useState, useEffect } from 'react';
-import { Row, Col, Input, Select, Divider, Button, Tabs } from '@vgs/elemente';
-import { Form } from 'antd';
+import React, {useContext, useState } from 'react';
+import { Row, Col, Input, Select, Divider, Button } from '@vgs/elemente';
+import { Form, notification} from 'antd';
 import { FormContext } from '../context/form-context';
+import { LINKS } from '../utils/constants';
 
 const { Option } = Select;
 const { Item } = Form;
 
-const SubmitForm = (props) => {
+const SubmitForm = () => {
   const [state, dispatch] = useContext(FormContext);
   const [httpMethod, setHTTPMethod] = useState('POST');
   const [endpoint, setEndpoint] = useState('/');
@@ -14,6 +15,7 @@ const SubmitForm = (props) => {
   const handleFormSave = () => {
     dispatch({ type: "SET_HTTP_METHOD", payload: httpMethod });
     dispatch({ type: "SET_ENDPOINT", payload: endpoint });
+    notification.success({ message: 'Saved successfully', duration: 1 });
   }
 
   return (
@@ -33,6 +35,7 @@ const SubmitForm = (props) => {
             </Item>
           </Col>
         </Row>
+        <small><a href={LINKS.FORM_SUBMISSION} target="_blank">Read more</a> about Collect.js form submission abilities.</small>
         <Row type="flex" justify="end">
           <Col>
             <Button type="primary" htmlType="submit">Save</Button>

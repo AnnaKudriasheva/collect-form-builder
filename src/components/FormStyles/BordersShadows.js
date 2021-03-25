@@ -28,7 +28,6 @@ const BordersShadows = (props) => {
             label="Border Width"
             name="border-width"
             placeholder="1"
-            defaultValue={1} 
             onChange={(value) => updateWrapperStyles("border-width", value, 'px')}
             unit="px"
           />

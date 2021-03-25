@@ -4,7 +4,7 @@ import getCollectJSConfiguration from '../templates/collect';
 import getCollectHTMLConfiguration from '../templates/collect-html';
 import getCollectCSSConfiguration from '../templates/collect-css';
 import getRouteConfig from '../templates/inbound-route';
-import { COLLECT_ENVS } from '../utils/constants';
+import { COLLECT_ENVS, LINKS } from '../utils/constants';
 
 import CodeBlock from '../components/CodeBlock';
 import FormField from '../components/FormField';
@@ -21,7 +21,7 @@ const { Option } = Select;
 const { Item } = Form;
 const { TabPane } = Tabs;
 
-const GetCode = (props) => {
+const GetCode = () => {
   const [state, dispatch] = useContext(FormContext);
   const [styles] = useContext(FormStylesContext);
   const [showCode, setShowCode] = useState(false);
@@ -95,9 +95,15 @@ const GetCode = (props) => {
               <CodeBlock code={cssCode} language="css" />
             </TabPane>
           </Tabs>
-          <Button onClick={handleCodeDownload}>Download Code</Button>
-          <Divider />
+          <Button onClick={handleCodeDownload} className="mr-1">Download Code</Button>
           <Button onClick={handleYAMLDownload}>Download YAML</Button>
+          <Divider />
+          <h3>Next steps:</h3>
+          <ul>
+            <li>Download code example and copy code into your application.</li>
+            <li>Download YAML config file with Inbound Route configuration and <a href={LINKS.YAML_CONFIGURATION} target="_blank">import</a> it into your vault. </li>
+            <li>Submit test data in your application!</li>
+          </ul>
         </>
       }
     </>

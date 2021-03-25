@@ -23,6 +23,10 @@ const initialState = {
       'color': '#C8D0DB'
     },
   },
+  label: {
+    'margin-bottom': '8px',
+    'display': 'block',
+  },
   state: {
     focused: {
       'border-color': '#145FF5',
@@ -66,6 +70,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         state: action.payload
+      }
+    case 'UPDATE_LABEL_STYLES':
+      return {
+        ...state,
+        label: action.payload
       }
     default:
       return state;

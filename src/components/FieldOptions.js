@@ -4,6 +4,8 @@ import { Space } from 'antd';
 import CheckboxController from '../components/CheckboxController';
 import { FormContext } from '../context/form-context';
 import MultiSelect from '../components/MultiSelect';
+import InfoTooltip from '../components/InfoTooltip';
+import { LINKS } from '../utils/constants';
 
 import { Form } from 'antd';
 
@@ -121,16 +123,28 @@ const FieldOptions = () => {
             </div>
           </Col>
           <Col span={12}>
-            <div className="form-group">
-              <label style={{ marginRight: '1rem' }}>Field validation types</label>
+            <Item label="Field validation types" name="field-validation">
               <MultiSelect options={availableConfig.validations} defaultValue={field.validations} handleChange={(v) => handleSelectChange(v, 'validations')} />
-            </div>
-            <div className="form-group">
-              {availableConfig.showCardIcon && <Checkbox checked={field.showCardIcon} onChange={(e) => handleSelectChange(e.target.checked, 'showCardIcon')}>Show card icon</Checkbox>}
-            </div>
-            <div className="form-group">
-              {availableConfig.hideValue && <Checkbox checked={field.hideValue} onChange={(e) => handleSelectChange(e.target.checked, 'hideValue')}>Mask input value</Checkbox>}
-            </div>
+              <small><a href={LINKS.VALIDATION} target="_blank">Read more</a> about validations.</small>
+            </Item>
+            {availableConfig.showCardIcon && (
+              <Item name="field-validation">
+                <Checkbox checked={field.showCardIcon} onChange={(e) => handleSelectChange(e.target.checked, 'showCardIcon')}>
+                  Show card icon
+                  <InfoTooltip 
+                    title="Will automatically determine the type of the credit card and show a desired icon. If you would like to show card brand icon or icon for CVV inside your field just check this checkbox." 
+                  />
+                </Checkbox>
+              </Item>
+            )}
+            {availableConfig.hideValue && (
+              <Item name="field-validation">
+                <Checkbox checked={field.hideValue} onChange={(e) => handleSelectChange(e.target.checked, 'hideValue')}>Mask input value</Checkbox>
+                <InfoTooltip 
+                  title="Set it to true if you would like to hide entered value." 
+                />
+              </Item>
+            )}
             {availableConfig.yearLength &&
               <div className="form-group">
                  <label style={{ marginRight: '1rem' }}>Year Format</label>

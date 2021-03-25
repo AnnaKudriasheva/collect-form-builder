@@ -16,7 +16,10 @@ const getCollectConfiguration = (state, styles) => {
         `}
       ).join('\n')
     }\n
-    form.submit('${state.endpoint}', { method: '${state.httpMethod}'}, (status, data) => { console.log(data) });
+    document.addEventListener('submit', (e) => {
+      e.preventDefault();
+      form.submit('${state.endpoint}', { method: '${state.httpMethod}'}, (status, data) => { console.log(data) });
+    });
     `.trim();
 };
 

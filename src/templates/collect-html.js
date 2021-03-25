@@ -13,6 +13,7 @@ const getCollectHTMLConfiguration = (state, styles) => {
         `}
       ).join('\n')
     }
+    <button type="submit">Submit</button>
   </form>
   <script src="https://js.verygoodvault.com/vgs-collect/2.5.0/vgs-collect.js"></script>
   `.trim();

@@ -7,6 +7,7 @@ import TextOptions from '../components/FormStyles/TextOptions';
 import BordersShadows from '../components/FormStyles/BordersShadows';
 import BoxModel from '../components/FormStyles/BoxModel';
 import StateStyles from '../components/FormStyles/StateStyles';
+import Label from '../components/FormStyles/Label';
 
 const { Panel } = Collapse;
 
@@ -14,22 +15,29 @@ const StlyeForm = () => {
   const [iframeStyles, setIframeStyles] = useState({});
   const [wrapperStyles, setWrapperStyles] = useState({});
   const [stateStyles, setStateStyles] = useState({});
+  const [labelStyles, setLabelStyles] = useState({});
   const [styles, dispatchStyles] = useContext(FormStylesContext);
 
   useEffect(() => {
     setIframeStyles(styles.iframe);
     setWrapperStyles(styles.wrapper);
     setStateStyles(styles.state);
+    setLabelStyles(styles.label);
   }, [styles]);
 
   const handleStylesUpdate = () => {
     dispatchStyles({ type: 'UPDATE_WRAPPER_STYLES', payload: wrapperStyles });
     dispatchStyles({ type: 'UPDATE_IFRAME_STYLES', payload: iframeStyles });
     dispatchStyles({ type: 'UPDATE_STATE_STYLES', payload: stateStyles });
+    dispatchStyles({ type: 'UPDATE_LABEL_STYLES', payload: labelStyles });
   }
 
   const updateStateStyles = (state, rule) => {
     setStateStyles({...stateStyles, [state]: { ...styles.state[state], ...rule }});
+  }
+
+  const updateLabelStyles = (rule, value, unit = '') => {
+    setLabelStyles({ ...labelStyles, [rule]: value ? `${value}${unit}` : value })
   }
 
   const updateIframeStyles = (rule, value, unit = '') => {
@@ -78,10 +86,13 @@ const StlyeForm = () => {
           <Panel header="Field borders and shadows" key="2">
             <BordersShadows updateWrapperStyles={updateWrapperStyles}/>
           </Panel>
-          <Panel header="Box model" key="3">
+          <Panel header="Label" key="3">
+            <Label updateLabelStyles={updateLabelStyles}/>
+          </Panel>
+          <Panel header="Box model" key="4">
             <BoxModel updateWrapperStyles={updateWrapperStyles} />
           </Panel>
-          <Panel header="Form state colors" key="4">
+          <Panel header="Form state colors" key="5">
             <StateStyles updateStateStyles={updateStateStyles} styles={styles.state} onUnchecked={onUncheckedControlCheckbox}/>
           </Panel>
         </Collapse>

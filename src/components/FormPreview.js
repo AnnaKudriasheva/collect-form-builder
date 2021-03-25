@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Form, Spin, Button } from '@vgs/elemente';
 import { loadVGSCollect } from '@vgs/collect-js';
 import { SyncOutlined } from '@ant-design/icons';
-import { createUseStyles, ThemeProvider, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import { FormContext } from '../context/form-context';
 import { FormStylesContext } from '../context/styles-context';
@@ -20,16 +20,17 @@ const useStyles = createUseStyles({
       boxShadow: props.state.invalid['box-shadow'] || 'none',
     }
   }),
-  wrapper: props => (props.wrapper)
+  wrapper: props => (props.wrapper),
+  label: props => (props.label)
 });
 
 const FormPreview = () => {
-  const [state, dispatch] = useContext(FormContext);
-  const [styles, dispatchStyles] = useContext(FormStylesContext);
+  const [state] = useContext(FormContext);
+  const [styles] = useContext(FormStylesContext);
   const [nodes, setNodes] = useState(['cardholder-name', 'card-number', 'card-expiration-date', 'card-security-code']);
   const [form, setForm] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const stateClasses = useStyles(styles);
+  const [loading, setLoading] = useState(true);
+  const classes = useStyles(styles);
 
   useEffect(() => {
     setLoading(true);
@@ -97,14 +98,14 @@ const FormPreview = () => {
       <Spin spinning={loading}>
       {nodes.length ? 
         <Form className={`
-          ${Object.keys(styles.state.focused).length && stateClasses.containerFocused} 
-          ${Object.keys(styles.state.invalid).length && stateClasses.containerInvalid}
+          ${Object.keys(styles.state.focused).length && classes.containerFocused} 
+          ${Object.keys(styles.state.invalid).length && classes.containerInvalid}
         `}>
           {
             nodes.map((field, idx) => (
               <>
-                {state.form[idx] && state.form[idx].label && <label>{state.form[idx].label}</label>}
-                <div id={field.split(' ').join('-').toLowerCase()} className={stateClasses.wrapper} key={idx}></div>
+                {state.form[idx] && state.form[idx].label && <label className={classes.label}>{state.form[idx].label}</label>}
+                <div id={field.split(' ').join('-').toLowerCase()} className={classes.wrapper} key={idx}></div>
               </>
             ))
           }
