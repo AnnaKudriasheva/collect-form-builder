@@ -18,7 +18,9 @@ const getCollectConfiguration = (state, styles) => {
     }\n
     document.addEventListener('submit', (e) => {
       e.preventDefault();
-      form.submit('${state.endpoint}', { method: '${state.httpMethod}'}, (status, data) => { console.log(data) });
+      form.submit('${state.endpoint}', { method: '${state.httpMethod}'}, (status, data) => { 
+        document.getElementById('response').innerText = JSON.stringify(data.json, null, ' ');
+      });
     });
     `.trim();
 };

@@ -4,6 +4,8 @@
 
 ## 🚀 Instant Collect.js Form Builder
 
+[https://vgs-form-builder.netlify.app/](https://vgs-form-builder.netlify.app/)
+
 1.  **Start developing**
 
     Navigate into your new site’s directory and start it up.

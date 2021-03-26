@@ -15,13 +15,14 @@ const FormField = (props) => {
     unit,
     step = 1,
     validation = {},
+    tooltip,
     type = 'text',
   } = props;
 
   const sharedProps = {
     placeholder,
     onChange,
-    validation
+    validation,
   }
 
   const mapTypeToComponent = {
@@ -46,7 +47,7 @@ const FormField = (props) => {
   }
 
   return (
-    <Item label={label} name={name} wrapperCol={{span: 24}} labelCol={{span: 24}} rules={[validation]}>
+    <Item label={label} name={name} wrapperCol={{span: 24}} labelCol={{span: 24}} rules={[validation]} tooltip={tooltip}>
       <div className="d-flex align-center">
         <Component {...getFieldProps()} /> 
         {unit && <span style={{ marginLeft: '8px' }}>{unit}</span>}

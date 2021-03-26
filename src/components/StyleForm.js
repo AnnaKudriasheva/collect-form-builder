@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FormStylesContext } from '../context/styles-context';
 import { Collapse, Row, Col, Button } from '@vgs/elemente';
-import { Form } from 'antd';
+import { Form, notification } from 'antd';
 
 import TextOptions from '../components/FormStyles/TextOptions';
 import BordersShadows from '../components/FormStyles/BordersShadows';
@@ -30,6 +30,7 @@ const StlyeForm = () => {
     dispatchStyles({ type: 'UPDATE_IFRAME_STYLES', payload: iframeStyles });
     dispatchStyles({ type: 'UPDATE_STATE_STYLES', payload: stateStyles });
     dispatchStyles({ type: 'UPDATE_LABEL_STYLES', payload: labelStyles });
+    notification.success({ message: 'Applied successfully!', duration: 1 });
   }
 
   const updateStateStyles = (state, rule) => {

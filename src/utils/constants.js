@@ -10,7 +10,9 @@ const LINKS = {
   FORM_SUBMISSION: 'https://www.verygoodsecurity.com/docs/vgs-collect/js/integration#setup-form-submission',
   EXAMPLES: 'https://verygoodsecurity.github.io/vgs-collect-examples/',
   IOS_SDK: 'https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk/overview',
-  ANDROID_SDK: 'https://www.verygoodsecurity.com/docs/vgs-collect/android-sdk/overview'
+  ANDROID_SDK: 'https://www.verygoodsecurity.com/docs/vgs-collect/android-sdk/overview',
+  DASHBOARD: 'https://dashboard.verygoodsecurity.com/',
+  UPSTREAM_HOST: 'https://www.verygoodsecurity.com/docs/terminology/nomenclature#upstream-host',
 };
 
 

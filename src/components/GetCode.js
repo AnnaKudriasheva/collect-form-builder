@@ -62,12 +62,22 @@ const GetCode = () => {
     updateCodeExamples();
   }, [state.form, styles]);
 
+  const vaultIdTooltip = (
+    <>
+      <p>
+        <a href={LINKS.DASHBOARD} target="_blank" style={{color: 'white', textDecoration: 'underline' }}>Log in</a>
+        to the Dashboard to get your vault id.
+      </p>
+      <img src="https://media.giphy.com/media/9OuoSIPkGI6PyG8hOM/giphy.gif" />
+    </>
+  )
+
   return (
     <> 
-      <Form name="get-code" initialValues={{ environment: 'sandbox' }} onFinish={handleFormSubmit}>
+      <Form name="get-code" className="get-code-form" initialValues={{ environment: 'sandbox' }} onFinish={handleFormSubmit}>
         <Row type="flex" gutter={24}>
           <Col xs={24} sm={24} md={24} lg={12}>
-            <FormField label="Vault ID" name="vault-id" validation={{required: true}} placeholder="tntXXXXXXXX" onChange={(e) => dispatch({ type: "SET_VAULT_ID", payload: e.target.value })}/>
+            <FormField label="Vault ID" name="vault-id" tooltip={{title: vaultIdTooltip, placement: 'right'}} validation={{required: true}} placeholder="tntXXXXXXXX" onChange={(e) => dispatch({ type: "SET_VAULT_ID", payload: e.target.value })}/>
           </Col>
           <Col xs={24} sm={24} md={24} lg={12}>
             <Item label="Environment" name="environment" wrapperCol={{span: 24}} labelCol={{span: 24}}>
@@ -103,6 +113,10 @@ const GetCode = () => {
             <li>Download code example and copy code into your application.</li>
             <li>Download YAML config file with Inbound Route configuration and <a href={LINKS.YAML_CONFIGURATION} target="_blank">import</a> it into your vault. </li>
             <li>Submit test data in your application!</li>
+            <li>
+              Replace <a href={LINKS.UPSTREAM_HOST} target="_blank">Upstream Host</a> with your own host. 
+              Our echo server https://echo.apps.verygood.systems/ should be used for the test purposes only, it can not be used for sensitive data.
+            </li>
           </ul>
         </>
       }

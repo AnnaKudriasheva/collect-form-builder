@@ -14,7 +14,7 @@ const Label = (props) => {
             type="number" 
             label="Font Size" 
             name="font-size"
-            defaultValue={16} 
+            defaultValue={14} 
             placeholder="16"
             onChange={(value) => updateLabelStyles('font-size', value, 'px')}
             unit="px" 

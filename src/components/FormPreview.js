@@ -97,7 +97,7 @@ const FormPreview = () => {
       </h3>
       <Spin spinning={loading}>
       {nodes.length ? 
-        <Form className={`
+        <div className={`
           ${Object.keys(styles.state.focused).length && classes.containerFocused} 
           ${Object.keys(styles.state.invalid).length && classes.containerInvalid}
         `}>
@@ -109,7 +109,7 @@ const FormPreview = () => {
               </>
             ))
           }
-        </Form> :
+        </div> :
         <p className="form-preview-empty">Add at least one field for preview</p>
       }
       </Spin>

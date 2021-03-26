@@ -20,7 +20,7 @@ const SubmitForm = () => {
 
   return (
     <> 
-      <Form name="submit-setup" initialValues={{endpoint: '/'}} onFinish={handleFormSave}>
+      <Form name="submit-setup" initialValues={{endpoint: '/post'}} onFinish={handleFormSave}>
         <Row type="flex" gutter={24}>
          <Col xs={24} sm={24} md={24} lg={12}>
             <Item label="HTTP Method" labelCol={{span: 24}} wrapperCol={{span: 24}}>

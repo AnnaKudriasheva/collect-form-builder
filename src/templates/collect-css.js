@@ -32,18 +32,27 @@ const getCollectCSSConfiguration = (styles) => {
       width: 100%;
       height: 100%;
     }
+
+    form {
+      width: 100%;
+      max-width: 500px;
+    }
+
     label {
       ${labelRules}
     }
+
     .field-wrapper {
       ${rules}
     }
+
     .vgs-collect-container__focused {
       ${
         Object.keys(state.focused).length &&
         stringify(state.focused)
       }
     }
+
     .vgs-collect-container__invalid.vgs-collect-container__dirty:not(.vgs-collect-container__focused) {
       ${
         Object.keys(state.invalid).length &&

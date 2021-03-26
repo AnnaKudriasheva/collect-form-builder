@@ -1,6 +1,5 @@
 import React, { useReducer, createContext } from 'react';
 import { payment_form_config } from '../templates/payment_form_config_template';
-import { login_form_config } from '../templates/login_form_config_template';
 export const FormContext = createContext();
 
 const initialState = {
@@ -12,7 +11,7 @@ const initialState = {
   environment: 'sandbox',
   isLoading: false,
   httpMethod: 'POST',
-  endpoint: '/',
+  endpoint: '/post',
   showDrawer: false,
   showTemplatesDrawer: false,
 };

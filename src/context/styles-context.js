@@ -26,6 +26,8 @@ const initialState = {
   label: {
     'margin-bottom': '8px',
     'display': 'block',
+    'color': '#40545F',
+    'font-size': '14px'
   },
   state: {
     focused: {

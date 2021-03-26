@@ -1,4 +1,4 @@
-.make-margins(@size: 3, @decrement: 1) when (@size >= 0) {
+.make-margins(@size: 5, @decrement: 1) when (@size >= 0) {
   .make-margins(@size - @decrement);
 
   @size-rem: ~"@{size}rem";
@@ -26,7 +26,7 @@
 
 // PADDING
 
-.make-paddings(@size: 3, @decrement: 1) when (@size >= 0) {
+.make-paddings(@size: 5, @decrement: 1) when (@size >= 0) {
   .make-paddings(@size - @decrement);
 
   @size-rem: ~"@{size}rem";
