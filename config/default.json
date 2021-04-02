@@ -1,0 +1,7 @@
+{
+  "keycloakConfig": {
+    "realm": "vgs",
+    "clientId": "vgs-dev",
+    "url": "https://auth.verygoodsecurity.io/auth"
+  }
+}
