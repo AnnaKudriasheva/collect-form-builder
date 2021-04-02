@@ -1,0 +1,54 @@
+version: 2.1
+
+job-defaults: &job-defaults
+  working_directory: /mnt/ramdisk/forms-vgs-dev
+
+docker-node-ci-defaults: &docker-node-ci-defaults
+  docker:
+    - image: quay.io/verygoodsecurity/node-alpine-ci:dev-1.0.9
+      auth:
+        username: $QUAY_DOCKER_LOGIN
+        password: $QUAY_DOCKER_LOGIN_PASSWORD
+
+save-scope: &save-scope
+  save_cache:
+    key: dashboard-{{ .Branch }}-{{ .Revision }}-{{ .Environment.CIRCLE_WORKFLOW_ID }}
+    paths:
+      - /mnt/ramdisk/dashboard
+
+restore-scope: &restore-scope
+  restore_cache:
+    key: dashboard-{{ .Branch }}-{{ .Revision }}-{{ .Environment.CIRCLE_WORKFLOW_ID }}
+
+jobs:
+  build:
+    <<: *docker-node-ci-defaults
+    resource_class: medium+
+    <<: *job-defaults
+    parameters:
+      npm_build:
+        description: The type of build to invoke from package.json Must be one of "build", "build-canary", "build-dev", "build-e2e", "build-dev-optimized".
+        type: enum
+        enum: ["build", "build-dev"]
+    steps:
+      - checkout
+      - run:
+          name: Install NPM modules
+          command: npm ci
+      - run:
+          name: Build
+          command: npm run-script <<parameters.npm_build>>
+
+workflows:
+  test-codebase:
+    jobs:
+      - build:
+          context: frontend-deploy
+          npm_build: build
+          filters:
+            branches:
+              only:
+                - /^pull\/.*$/
+                - /^revert-.*$/
+            tags:
+              ignore: /.*/
