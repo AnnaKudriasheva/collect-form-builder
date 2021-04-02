@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Row, Col }  from '@vgs/elemente';
 import { Button } from 'antd';
-import { LoginOutlined, BookOutlined, LogoutOutlined } from '@ant-design/icons'
+import { LoginOutlined, BookOutlined, LogoutOutlined } from '@ant-design/icons';
 
 import VGSLogo from '../images/vgs-logo.svg';
 import { useAuthContext } from '../context/AuthContext'
