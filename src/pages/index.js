@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React from 'react'
 
 import FieldOptionsContainer from '../containers/FieldOptionsContainer';
 import FormBuilderContainer from '../containers/FormBuilderContainer';

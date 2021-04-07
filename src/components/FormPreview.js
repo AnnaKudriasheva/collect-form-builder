@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Form, Spin, Button } from '@vgs/elemente';
+import { Spin, Button } from '@vgs/elemente';
 import { loadVGSCollect } from '@vgs/collect-js';
 import { SyncOutlined } from '@ant-design/icons';
 import { createUseStyles } from 'react-jss';
@@ -103,10 +103,10 @@ const FormPreview = () => {
         `}>
           {
             nodes.map((field, idx) => (
-              <>
+              <React.Fragment key={idx}>
                 {state.form[idx] && state.form[idx].label && <label className={classes.label}>{state.form[idx].label}</label>}
                 <div id={field.split(' ').join('-').toLowerCase()} className={classes.wrapper} key={idx}></div>
-              </>
+              </React.Fragment>
             ))
           }
         </div> :
