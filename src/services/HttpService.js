@@ -1,6 +1,11 @@
 import axios from 'axios'
-import { fetchJSONApi } from '../api/utils'
-import { accessToken } from '../context/AuthContext'
+import { get } from 'lodash'
+import { accessToken } from '../context'
+import { sendErrorToRollbar } from '../utils/rollbar'
+import { message } from 'antd';
+import { isJSON } from '../utils'
+
+const FETCH_FAILED_ERROR_TEXT = 'Failed to fetch request';
 
 const _VGSClient = axios.create({
   headers: {
@@ -10,29 +15,47 @@ const _VGSClient = axios.create({
   }
 })
 
-_VGSClient.interceptors.request.use(({ headers }) => {
+_VGSClient.interceptors.request.use((config) => {
+  const { headers } = config;
   if (
     headers.Authorization === 'Bearer [TOKEN]' &&
     accessToken
   ) {
     headers.Authorization = `Bearer ${accessToken}`;
   }
+
+  return config;
 })
 
 _VGSClient.interceptors.response.use((response) => {
   return response;
 }, (error) => {
-  // Any status codes that falls outside the range of 2xx cause this function to trigger
-  // Do something with response error
+  if (error.response) {
+    let errorMessage;
+
+    const errorResponse = get(error, 'response.data.errors[0]') || get(error, 'message');
+
+    if (errorResponse && errorResponse.code || (errorResponse.status && errorResponse.title && errorResponse.detail)) {
+      if (isJSON(errorResponse.detail)) {
+        errorMessage = JSON.parse(errorResponse.detail);
+      }
+      errorMessage = errorResponse.detail
+    } else if (get(error, 'response.data.message')) {
+      errorMessage = error.response.data.message;
+    } else {
+      errorMessage = FETCH_FAILED_ERROR_TEXT;
+    }
+
+    message.error(errorMessage)
+  }
+  sendErrorToRollbar(error);
   return Promise.reject(error);
 });
 
-const getData = (url, options = {}) => fetchJSONApi(url, { method: 'GET', headers: options.headers }, options.handlers);
-const postData = (url, data, options = {}) => fetchJSONApi(url, { data: { data }, method: 'POST', headers: options.headers }, options.handlers);
+const getData = (url, options = {}) => _VGSClient.request({ url, method: 'GET', headers: options.headers });
+const postData = (url, data, options = {}) => _VGSClient.request({ data, url, method: 'POST', headers: options.headers });
 
-const getVGSClient = () => _VGSClient
 const HttpService = {
-  getVGSClient,
   getData,
   postData,
 }

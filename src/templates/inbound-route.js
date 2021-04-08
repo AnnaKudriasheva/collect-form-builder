@@ -60,27 +60,22 @@ const getEntry = (endpoint, name, type) => {
 
 
 const getRouteConfig = (state) => {
-  const id = uuidv4();
   return {
     "data": [
         {
           "attributes": {
-              "created_at": new Date(new Date().getTime()).toISOString(),
               "destination_override_endpoint": "https://echo.apps.verygood.systems",
               "entries": state.form.map(field => getEntry(state.endpoint, field.name, field.type)),
-              "host_endpoint": "(.*)\\.verygoodproxy\\.com",
-              "id": id,
-              "ordinal": null,
+              "host_endpoint": "(.*)\\.verygoodproxy\\.io",
               "port": 80,
               "protocol": "http",
               "source_endpoint": "*",
+              "transport": "HTTP",
               "tags": {
                 "name": "echo.apps.verygood.systems-collect-form",
-                "source": "RouteContainer"
+                "source": "Collect Form Builder"
               },
-              "updated_at": new Date(new Date().getTime()).toISOString()
           },
-          "id": id,
           "type": "rule_chain"
         }
     ],

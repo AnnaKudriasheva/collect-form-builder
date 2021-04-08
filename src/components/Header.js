@@ -1,15 +1,15 @@
-import React from 'react';
+import React  from 'react'
 import { Layout, Row, Col }  from '@vgs/elemente';
 import { Button } from 'antd';
 import { LoginOutlined, BookOutlined, LogoutOutlined } from '@ant-design/icons';
 
 import VGSLogo from '../images/vgs-logo.svg';
-import { useAuthContext } from '../context/AuthContext'
+import { useAuthContext } from '../context'
 
 const { Header } = Layout;
 
 const FormBuilderHeader = () => {
-  const [{ isAuthenticated, isAuthenticating, Auth }] = useAuthContext();
+  const [{ isAuthenticated, isAuthenticating, Auth, login }] = useAuthContext();
 
   return (
     <Header style={{ backgroundColor: 'white', boxShadow: '0px 0px 6px rgb(23 31 39 / 30%' }}>
@@ -28,7 +28,7 @@ const FormBuilderHeader = () => {
               <Button
                 type="default"
                 loading={isAuthenticating}
-                onClick={Auth && (isAuthenticated ? Auth.logout : Auth.login)}
+                onClick={Auth && (isAuthenticated ? Auth.logout : login)}
                 icon={isAuthenticated ? <LogoutOutlined /> : <LoginOutlined />}
               >
                 {isAuthenticated ? 'Logout' : 'Sign in'}
