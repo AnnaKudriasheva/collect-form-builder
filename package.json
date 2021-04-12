@@ -51,6 +51,8 @@
     "react-helmet": "^6.1.0",
     "react-input-color": "^4.0.0",
     "react-jss": "^10.6.0",
+    "react-query": "^3.13.6",
+    "react-query-devtools": "^2.6.3",
     "rollbar": "^2.21.1",
     "uuid": "^8.3.2"
   },

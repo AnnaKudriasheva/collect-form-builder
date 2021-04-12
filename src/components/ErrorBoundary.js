@@ -1,13 +1,24 @@
 import React, { useEffect } from 'react'
+import { Result, Button } from '@vgs/elemente'
 import { ErrorBoundary as EB } from 'react-error-boundary'
 import { initRollbar } from '../utils/rollbar'
 
-const ErrorFallback = ({error, resetErrorBoundary}) => {
+const ErrorFallback = ({_error, resetErrorBoundary}) => {
   return (
     <div role="alert">
-      <p>Sorry, something went wrong:</p>
-      <pre>{error.message}</pre>
-      <button onClick={resetErrorBoundary}>Try again</button>
+      <Result
+        status="warning"
+        title="Sorry, something went wrong. 😔"
+        extra={
+          <Button onClick={() => {
+            resetErrorBoundary();
+            window.location.reload(false);
+          }}>
+            Reload page.
+          </Button>
+        }
+      >
+      </Result>
     </div>
   )
 }

@@ -36,7 +36,15 @@ export const getVault = async (vault) => {
 
 export const checkVaultStatus = async (vault) => {
   const response = await getVault(vault);
-  return response.attributes.state === 'PROVISIONED';
+  const isProvisioned = response.attributes.state === 'PROVISIONED'
+  if (isProvisioned) {
+    return {
+      isProvisioned,
+      vault: response,
+    };
+  }
+
+  throw new Error('Vault is being provisioning...')
 }
 
 export const createVault = async (organizationId, name) => {
@@ -62,7 +70,7 @@ export const createVault = async (organizationId, name) => {
   return (await HttpService.postData(url, data))?.data?.data;
 }
 
-export const createRouteRequest = async (vault, route) => {
+export const createRoute = async (vault, route) => {
   const url = `${vault.links.vault_management_api}/rule-chains`;
   const options = {
     headers: {
