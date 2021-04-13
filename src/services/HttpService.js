@@ -1,9 +1,8 @@
 import axios from 'axios'
 import { get } from 'lodash'
-import { accessToken } from '../context'
 import { sendErrorToRollbar } from '../utils/rollbar'
 import { message } from 'antd';
-import { isJSON } from '../utils'
+import { checkWindow, isJSON } from '../utils'
 
 const FETCH_FAILED_ERROR_TEXT = 'Failed to fetch request';
 
@@ -15,15 +14,21 @@ const _VGSClient = axios.create({
   }
 })
 
-_VGSClient.interceptors.request.use((config) => {
+_VGSClient.interceptors.request.use(async (config) => {
   const { headers } = config;
-  if (
-    headers.Authorization === 'Bearer [TOKEN]' &&
-    accessToken
-  ) {
-    headers.Authorization = `Bearer ${accessToken}`;
+  if (headers.Authorization === 'Bearer [TOKEN]') {
+    if (checkWindow()) {
+      await import('../services/AuthService')
+        .then(async AuthService => {
+          const Authz = AuthService.default;
+          await Authz.updateToken();
+          if (Authz.accessToken) {
+            headers.Authorization = `Bearer ${Authz.accessToken}`;
+          }
+        })
+        .catch(error => console.error(error))
+    }
   }
-
   return config;
 })
 

@@ -1,4 +1,5 @@
 import Keycloak from "keycloak-js";
+import config from 'config'
 
 const kcInitOptions = {
   checkLoginIframe: false,
@@ -28,7 +29,7 @@ class AuthService {
   }
 
   updateToken() {
-    return this.instance.updateToken(5)
+    return this.instance.updateToken(30)
       .catch(this.login);
   }
 
@@ -38,6 +39,12 @@ class AuthService {
         onAuthCallback()
       });
   }
+
+  get accessToken() {
+    return this.instance.token;
+  }
 }
 
-export default AuthService;
+const AuthInstance = new AuthService(config.keycloakConfig, {redirectUri: window.location.origin})
+
+export default AuthInstance;

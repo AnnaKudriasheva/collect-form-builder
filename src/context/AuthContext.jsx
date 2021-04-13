@@ -55,10 +55,7 @@ const reducer = createReducer(
   }
 );
 
-export let accessToken = '';
-
 const authenticate = (AuthInstance, DispatchableActions) => {
-  accessToken = AuthInstance.token;
   const tokenParsed = AuthInstance.tokenParsed;
   const activeClient = AuthInstance.clientId;
   DispatchableActions.initClient({ tokenParsed, activeClient, AuthInstance })
@@ -76,12 +73,12 @@ const AuthContextProvider = ({
       DispatchableActions.setIsAuthenticating(true)
       import('../services/AuthService')
         .then(AuthService => {
-          const _Auth = new AuthService.default(config.keycloakConfig, {redirectUri: window.location.origin})
-          _Auth.init(() => {
-            authenticate(_Auth.instance, DispatchableActions)
+          const Authz = AuthService.default;
+          Authz.init(() => {
+            authenticate(Authz.instance, DispatchableActions)
           });
 
-          setAuth(_Auth);
+          setAuth(Authz); 
         })
         .catch(error => console.error(error))
         .finally(() => DispatchableActions.setIsAuthenticating(false))
