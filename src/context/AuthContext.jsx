@@ -78,7 +78,7 @@ const AuthContextProvider = ({
             authenticate(Authz.instance, DispatchableActions)
           });
 
-          setAuth(Authz); 
+          setAuth(Authz);
         })
         .catch(error => console.error(error))
         .finally(() => DispatchableActions.setIsAuthenticating(false))

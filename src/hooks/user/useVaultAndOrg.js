@@ -1,11 +1,11 @@
 import { useQuery } from 'react-query'
 import { getAllVaults } from '../../api'
 import { groupBy } from 'lodash'
-import USER_TYPE, { USER_QUERY_TYPES } from './user_types'
+import { USER_QUERY_TYPES } from './userQueryTypes'
 
 const useVaultAndOrg = ({ isEnabled, userProfile }) => {
   return useQuery(
-    [USER_TYPE, USER_QUERY_TYPES.ORG_VAULT],
+    [USER_QUERY_TYPES.USER, USER_QUERY_TYPES.ORG_VAULT],
     async () => {
       const { data: vaults, included: organizations } = await getAllVaults();
       const userCurrentVaultId = userProfile?.settings?.current_vault;

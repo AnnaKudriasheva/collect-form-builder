@@ -6,6 +6,12 @@
     "clientId": "forms-vgs-dev",
     "url": "https://auth.verygoodsecurity.io/auth"
   },
+  "googleTagManagerConfig": {
+    "gtmContainerId": "GTM-P25MLQ7",
+    "gtmEnvironment": "env-3",
+    "gtmAuth": "qRiAULcoInbdcD7IDqKlLA"
+  },
+  "heapTrackingId": "11282330",
   "rollbar": {
     "verbose": false,
     "enabled": true,
