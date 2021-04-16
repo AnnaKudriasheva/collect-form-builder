@@ -1,11 +1,11 @@
 import React, { useReducer, createContext, useState, useEffect, memo } from 'react'
 import config from 'config';
-import { useHeapAnalytics } from '@vgs/elemente'
 import {
   checkWindow,
   createReducer,
 } from '../utils';
 import { makeDispatchable, useCreateUseContext } from './utils'
+import useHeapAnalytics from '../hooks/useHeapAnalytics'
 
 export const authActionsTypes = {
   INIT_CLIENT: 'INIT_CLIENT',
@@ -68,7 +68,8 @@ const AuthContextProvider = ({
   const [state, dispatch] = useReducer(reducer, initialState, (state) => state);
   const [Auth, setAuth] = useState(null);
   const DispatchableActions = makeDispatchable(dispatch, Actions);
-  const { identify } = useHeapAnalytics();
+
+  useHeapAnalytics();
 
   useEffect(() => {
     if (checkWindow()) {
@@ -84,12 +85,12 @@ const AuthContextProvider = ({
         })
         .catch(error => console.error(error))
         .finally(() => DispatchableActions.setIsAuthenticating(false))
-    }
 
-    const { email } = state.tokenParsed || {};
+      const { email } = state.tokenParsed || {};
 
-    if (identify && email) {
-      identify(email);
+      if (window?.heap?.identity) {
+        window.heap.identify(email);
+      }
     }
   }, [state.isAuthenticated])
 
