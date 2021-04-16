@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Checkbox, Tooltip } from '@vgs/elemente';
+import { Row, Col, Checkbox } from 'antd';
 import InfoTooltip from '../components/InfoTooltip';
 
 const CheckboxController = (props) => {

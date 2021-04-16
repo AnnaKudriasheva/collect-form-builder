@@ -1,7 +1,7 @@
 import React from 'react';
 import  { BORDER_STYLES } from '../../utils/constants';
 import FormField from '../../components/FormField';
-import {  Row, Col, Select } from '@vgs/elemente';
+import {  Row, Col, Select } from 'antd';
 import { Form } from 'antd';
 
 const { Option } = Select;

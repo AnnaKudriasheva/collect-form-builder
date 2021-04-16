@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { groupBy } from 'lodash';
-import { Row, Col, Select, Divider, Button, Tabs, Spin } from '@vgs/elemente';
+import { Row, Col, Select, Divider, Button, Tabs, Spin } from 'antd';
 import { Form } from 'antd';
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';

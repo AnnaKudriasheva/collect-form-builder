@@ -5,7 +5,7 @@ import FormBuilderContainer from '../containers/FormBuilderContainer';
 import FormBuilderHeader from '../components/Header';
 
 import { FormContextProvider, FormStylesContextProvider } from '../context';
-import { Layout }  from '@vgs/elemente';
+import { Layout }  from 'antd';
 import FormBuilderDrawer from '../components/FormBuilderDrawer';
 import FormTemplatesDrawer from '../components/FormTemplatesDrawer';
 

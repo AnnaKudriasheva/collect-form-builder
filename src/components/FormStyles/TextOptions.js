@@ -1,8 +1,6 @@
 import React from 'react';
-import ColorPicker from '../ColorPicker';
 import FormField from '../../components/FormField';
-import {  Row, Col, Select, InputNumber } from '@vgs/elemente';
-import { Form } from 'antd'
+import {  Row, Col, Select, Form } from 'antd';
 
 import { numericValidation } from '../../utils/validation';
 import { SYSTEM_FONTS } from '../../utils/constants';

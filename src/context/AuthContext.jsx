@@ -5,6 +5,7 @@ import {
   createReducer,
 } from '../utils';
 import { makeDispatchable, useCreateUseContext } from './utils'
+import useHeapAnalytics from '../hooks/useHeapAnalytics'
 
 export const authActionsTypes = {
   INIT_CLIENT: 'INIT_CLIENT',
@@ -68,6 +69,8 @@ const AuthContextProvider = ({
   const [Auth, setAuth] = useState(null);
   const DispatchableActions = makeDispatchable(dispatch, Actions);
 
+  useHeapAnalytics();
+
   useEffect(() => {
     if (checkWindow()) {
       DispatchableActions.setIsAuthenticating(true)
@@ -82,6 +85,12 @@ const AuthContextProvider = ({
         })
         .catch(error => console.error(error))
         .finally(() => DispatchableActions.setIsAuthenticating(false))
+
+      const { email } = state.tokenParsed || {};
+
+      if (window?.heap?.identity) {
+        window.heap.identify(email);
+      }
     }
   }, [state.isAuthenticated])
 

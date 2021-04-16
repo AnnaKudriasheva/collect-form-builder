@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { FormStylesContext } from '../context/styles-context';
-import { Collapse, Row, Col, Button } from '@vgs/elemente';
+import { FormStylesContext } from '../context';
+import { Collapse, Row, Col, Button } from 'antd';
 import { Form, notification } from 'antd';
 
 import TextOptions from '../components/FormStyles/TextOptions';

@@ -1,14 +1,14 @@
 import React, {useContext, useState } from 'react';
-import { Row, Col, Input, Select, Divider, Button } from '@vgs/elemente';
+import { Row, Col, Input, Select, Divider, Button } from 'antd';
 import { Form, notification} from 'antd';
-import { FormContext } from '../context/form-context';
+import { FormContext } from '../context';
 import { LINKS } from '../utils/constants';
 
 const { Option } = Select;
 const { Item } = Form;
 
 const SubmitForm = () => {
-  const [state, dispatch] = useContext(FormContext);
+  const [, dispatch] = useContext(FormContext);
   const [httpMethod, setHTTPMethod] = useState('POST');
   const [endpoint, setEndpoint] = useState('/');
 

@@ -1,8 +1,8 @@
 
 import React, { useState, useContext, useEffect } from 'react';
-import { Drawer, Button, Card }  from '@vgs/elemente';
+import { Drawer, Button, Card }  from 'antd';
 
-import { FormContext } from '../context/form-context';
+import { FormContext } from '../context';
 
 import { payment_form_config } from '../templates/payment_form_config_template';
 import { login_form_config } from '../templates/login_form_config_template';

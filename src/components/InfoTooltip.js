@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tooltip } from '@vgs/elemente';
+import { Tooltip } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 
 const InfoTooltip = (props) => {

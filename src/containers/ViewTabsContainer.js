@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Tabs, Button } from '@vgs/elemente';
+import { Tabs, Button } from 'antd';
 
 import FormLayout from '../components/FormLayout';
 import StlyeForm from '../components/StyleForm';

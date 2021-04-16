@@ -1,7 +1,6 @@
 const React = require("react");
 const config = require("config");
 const { QueryClient, QueryClientProvider } = require('react-query');
-const { HeapAnalyticsProvider } = require('@vgs/elemente');
 const AuthContextProvider = require('./src/context/AuthContext').default;
 const ErrorBoundary = require('./src/components/ErrorBoundary').default;
 
@@ -19,11 +18,9 @@ exports.wrapRootElement = ({ element }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary>
-        <HeapAnalyticsProvider heapTrackingId={config.heapTrackingId}>
-          <AuthContextProvider>
-            {element}
-          </AuthContextProvider>
-        </HeapAnalyticsProvider>
+        <AuthContextProvider>
+          {element}
+        </AuthContextProvider>
       </ErrorBoundary>
     </QueryClientProvider>
   )
