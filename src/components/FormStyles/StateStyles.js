@@ -1,6 +1,6 @@
 import React from 'react';
 import ColorPicker from '../ColorPicker';
-import { Row, Col, Input } from '@vgs/elemente';
+import { Row, Col, Input } from 'antd';
 import CheckboxController from '../CheckboxController';
 import { Form } from 'antd';
 

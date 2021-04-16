@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Spin, Button } from '@vgs/elemente';
+import { Spin, Button } from 'antd';
 import { loadVGSCollect } from '@vgs/collect-js';
 import { SyncOutlined } from '@ant-design/icons';
 import { createUseStyles } from 'react-jss';
 
-import { FormContext } from '../context/form-context';
-import { FormStylesContext } from '../context/styles-context';
+import { FormContext, FormStylesContext } from '../context';
 
 const useStyles = createUseStyles({
   containerFocused: props => ({

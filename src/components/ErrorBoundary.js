@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Result, Button } from '@vgs/elemente'
+import { Result, Button } from 'antd'
 import { ErrorBoundary as EB } from 'react-error-boundary'
 import { initRollbar } from '../utils/rollbar'
 

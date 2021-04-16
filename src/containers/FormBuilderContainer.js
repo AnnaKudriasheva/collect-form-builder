@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import ViewTabsContainer from '../containers/ViewTabsContainer';
 import FormPreview from '../components/FormPreview';
 
-import { Row, Col }  from '@vgs/elemente';
-import { FormContext } from '../context/form-context';
+import { Row, Col }  from 'antd';
+import { FormContext } from '../context';
 
 const FormBuilderContainer = () => {
   const [state] = useContext(FormContext);

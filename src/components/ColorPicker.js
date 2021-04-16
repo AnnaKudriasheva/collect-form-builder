@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Input } from '@vgs/elemente';
+import { Input } from 'antd';
 import InputColor from 'react-input-color';
 
 const ColorPicker = (props) => {

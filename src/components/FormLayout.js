@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { Button, Row, Col } from '@vgs/elemente';
+import { Button, Row, Col } from 'antd';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Icon, { PlusOutlined, SelectOutlined } from '@ant-design/icons';
 
 import DeleteIcon from '../images/delete.svg';
 import DragDropIcon from '../images/drag-drop.svg';
-import { FormContext } from '../context/form-context';
+import { FormContext } from '../context';
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   userSelect: "none",
@@ -83,7 +83,7 @@ const FormLayout = () => {
       </Row>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
-          {(provided, snapshot) => (
+          {(provided) => (
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}

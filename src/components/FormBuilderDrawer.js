@@ -1,8 +1,8 @@
 
 import React, { useState, useContext, useEffect } from 'react';
-import { Drawer }  from '@vgs/elemente';
+import { Drawer }  from 'antd';
 
-import { FormContext } from '../context/form-context';
+import { FormContext } from '../context';
 import { LINKS } from '../utils/constants';
 
 const FormBuilderDrawer = () => {

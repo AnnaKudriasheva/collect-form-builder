@@ -19,7 +19,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.5.0",
     "@vgs/collect-js": "^0.2.0",
-    "@vgs/elemente": "^0.4.45",
+    "@vgs/elemente": "^0.5.19",
     "antd": "^4.13.0",
     "axios": "^0.21.1",
     "config": "^3.3.6",

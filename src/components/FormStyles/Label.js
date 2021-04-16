@@ -1,6 +1,6 @@
 import React from 'react';
 import FormField from '../../components/FormField';
-import {  Row, Col } from '@vgs/elemente';
+import {  Row, Col } from 'antd';
 
 import { numericValidation } from '../../utils/validation';
 

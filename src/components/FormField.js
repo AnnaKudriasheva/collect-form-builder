@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Select, Input, InputNumber } from '@vgs/elemente';
+import { Input, InputNumber } from 'antd';
 import ColorPicker from '../components/ColorPicker';
 import { Form } from 'antd';
 
