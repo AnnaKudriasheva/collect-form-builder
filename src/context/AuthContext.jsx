@@ -1,10 +1,10 @@
-import React, { useReducer, createContext, useState, useEffect } from 'react'
+import React, { useReducer, createContext, useState, useEffect, memo } from 'react'
 import config from 'config';
 import {
   checkWindow,
   createReducer,
 } from '../utils';
-import { useCreateUseContext } from './utils';
+import { makeDispatchable, useCreateUseContext } from './utils'
 
 export const authActionsTypes = {
   INIT_CLIENT: 'INIT_CLIENT',
@@ -13,9 +13,13 @@ export const authActionsTypes = {
 };
 
 export const Actions = {
-  [authActionsTypes.AUTHENTICATING]: (isAuthenticating) => ({
+  setIsAuthenticating: (dispatch, isAuthenticating) => dispatch({
     type: authActionsTypes.AUTHENTICATING,
     payload: isAuthenticating,
+  }),
+  initClient: (dispatch, { tokenParsed, activeClient, AuthInstance }) => dispatch({
+    type: authActionsTypes.INIT_CLIENT,
+    payload: { tokenParsed, activeClient, isAuthenticated: AuthInstance.authenticated }
   })
 }
 
@@ -37,9 +41,9 @@ const reducer = createReducer(
   { ...initialState, activeClient: config.keycloakConfig.clientId },
   {
     [authActionsTypes.INIT_CLIENT]: (s, a) => ({
-      ...s,
-      ...a.payload
-    }),
+        ...s,
+        ...a.payload
+      }),
     [authActionsTypes.SET_TOKEN]: (s, a) => ({
       ...s,
       tokenParsed: a.payload,
@@ -51,40 +55,47 @@ const reducer = createReducer(
   }
 );
 
-export let accessToken = '';
+const authenticate = (AuthInstance, DispatchableActions) => {
+  const tokenParsed = AuthInstance.tokenParsed;
+  const activeClient = AuthInstance.clientId;
+  DispatchableActions.initClient({ tokenParsed, activeClient, AuthInstance })
+}
 
 const AuthContextProvider = ({
   children,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState, (state) => state);
   const [Auth, setAuth] = useState(null);
+  const DispatchableActions = makeDispatchable(dispatch, Actions);
 
   useEffect(() => {
     if (checkWindow()) {
-      dispatch(Actions[authActionsTypes.AUTHENTICATING](true))
+      DispatchableActions.setIsAuthenticating(true)
       import('../services/AuthService')
         .then(AuthService => {
-          const _Auth = new AuthService.default(config.keycloakConfig, {redirectUri: window.location.origin})
-          _Auth.init(() => {
-            accessToken = _Auth.instance.token;
-            const tokenParsed = _Auth.instance.tokenParsed;
-            const activeClient = _Auth.instance.clientId;
-            dispatch({
-              type: authActionsTypes.INIT_CLIENT,
-              payload: { tokenParsed, activeClient, isAuthenticated: _Auth.instance.authenticated }
-            })
+          const Authz = AuthService.default;
+          Authz.init(() => {
+            authenticate(Authz.instance, DispatchableActions)
           });
 
-          console.log(_Auth)
-          setAuth(_Auth);
+          setAuth(Authz);
         })
         .catch(error => console.error(error))
-        .finally(() => dispatch(Actions[authActionsTypes.AUTHENTICATING](false)))
+        .finally(() => DispatchableActions.setIsAuthenticating(false))
     }
   }, [state.isAuthenticated])
 
+  const login = () => {
+    if (Auth) {
+      Auth.login()
+        .then(() => {
+          authenticate(Auth.instance, dispatch)
+        })
+    }
+  }
+
   return (
-    <AuthStateContext.Provider value={{ ...state, Auth }}>
+    <AuthStateContext.Provider value={{ ...state, Auth, login }}>
       <AuthDispatchContext.Provider value={dispatch}>
         {children}
       </AuthDispatchContext.Provider>
@@ -95,4 +106,4 @@ const AuthContextProvider = ({
 export const useAuthContext = () =>
   useCreateUseContext(AuthStateContext, AuthDispatchContext);
 
-export default AuthContextProvider;
+export default memo(AuthContextProvider);

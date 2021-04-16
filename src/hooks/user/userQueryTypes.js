@@ -1,0 +1,6 @@
+export const USER_QUERY_TYPES = {
+  USER: 'USER',
+  PROFILE: 'PROFILE',
+  ORG_VAULT: 'ORG_VAULT',
+  ROUTES: 'ROUTES',
+};

@@ -5,12 +5,12 @@ import FormLayout from '../components/FormLayout';
 import StlyeForm from '../components/StyleForm';
 import GetCode from '../components/GetCode';
 import SubmitForm from '../components/SubmitForm';
-import { FormContext } from '../context/form-context';
+import { FormContext } from '../context';
 
 const { TabPane } = Tabs;
 
 const ViewTabsContainer = () => {
-  const [state, dispatch] = useContext(FormContext);
+  const [, dispatch] = useContext(FormContext);
   return (
     <>
     <h3 style={{ marginBottom: '2rem', textAlign: 'center' }}>

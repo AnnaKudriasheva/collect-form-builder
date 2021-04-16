@@ -4,8 +4,7 @@ import FieldOptionsContainer from '../containers/FieldOptionsContainer';
 import FormBuilderContainer from '../containers/FormBuilderContainer';
 import FormBuilderHeader from '../components/Header';
 
-import { FormContextProvider } from "../context/form-context";
-import { FormStylesContextProvider } from "../context/styles-context";
+import { FormContextProvider, FormStylesContextProvider } from '../context';
 import { Layout }  from '@vgs/elemente';
 import FormBuilderDrawer from '../components/FormBuilderDrawer';
 import FormTemplatesDrawer from '../components/FormTemplatesDrawer';

@@ -1,7 +1,25 @@
 {
+  "accountsAPI": "https://accounts.verygoodsecurity.io",
+  "userPersonalizationService": "https://personalize.apps.verygoodsecurity.io",
   "keycloakConfig": {
     "realm": "vgs",
-    "clientId": "vgs-dev",
+    "clientId": "forms-vgs-dev",
     "url": "https://auth.verygoodsecurity.io/auth"
+  },
+  "googleTagManagerConfig": {
+    "gtmContainerId": "GTM-P25MLQ7",
+    "gtmEnvironment": "env-3",
+    "gtmAuth": "qRiAULcoInbdcD7IDqKlLA"
+  },
+  "heapTrackingId": "11282330",
+  "rollbar": {
+    "verbose": false,
+    "enabled": true,
+    "captureUncaught": true,
+    "captureUnhandledRejections": true,
+    "payload": {
+      "environment": "production"
+    },
+    "accessToken": "d65c5149465d4870a72889e2ab884c79"
   }
 }
