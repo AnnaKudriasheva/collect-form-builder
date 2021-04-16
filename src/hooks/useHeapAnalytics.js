@@ -11,8 +11,8 @@ function heapTemplate(config) {
 export default function useHeapAnalytics() {
   useLayoutEffect(() => {
     if (
-      // ['production', 'development'].includes(process.env.DOCS_ENV) &&
-      // !localStorage.getItem('vgs_staff') &&
+      ['production', 'development'].includes(process.env.DOCS_ENV) &&
+      !localStorage.getItem('vgs_staff') &&
       !document.querySelector('#heap-container')
     ) {
       const scriptElement = document.createElement('script');
