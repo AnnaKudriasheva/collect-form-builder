@@ -4,7 +4,7 @@
   "keycloakConfig": {
     "realm": "vgs",
     "clientId": "forms-vgs-dev",
-    "url": "https://auth.verygoodsecurity.io/auth"
+    "url": "https://auth.verygoodsecurity.com/auth"
   },
   "googleTagManagerConfig": {
     "gtmContainerId": "GTM-P25MLQ7",
