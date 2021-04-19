@@ -3,7 +3,7 @@ import { Tabs, Button } from 'antd';
 
 import FormLayout from '../components/FormLayout';
 import StlyeForm from '../components/StyleForm';
-import GetCode from '../components/GetCode';
+import ConnectForm from '../components/ConnectForm';
 import SubmitForm from '../components/SubmitForm';
 import { FormContext } from '../context';
 
@@ -27,8 +27,8 @@ const ViewTabsContainer = () => {
       <TabPane tab="3. Submit Form" key="3">
         <SubmitForm />
       </TabPane>
-      <TabPane tab="4. Get Code" key="4">
-        <GetCode />
+      <TabPane tab="4. Connect Form with VGS" key="4">
+        <ConnectForm />
       </TabPane>
     </Tabs>
     </>

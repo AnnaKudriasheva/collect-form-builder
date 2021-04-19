@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Spin, Button } from 'antd';
+import { Spin, Button, Card, Radio } from 'antd';
 import { loadVGSCollect } from '@vgs/collect-js';
 import { SyncOutlined } from '@ant-design/icons';
 import { createUseStyles } from 'react-jss';
+
+import CodeExample from './CodeExample';
 
 import { FormContext, FormStylesContext } from '../context';
 
@@ -29,6 +31,7 @@ const FormPreview = () => {
   const [nodes, setNodes] = useState(['cardholder-name', 'card-number', 'card-expiration-date', 'card-security-code']);
   const [form, setForm] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [view, setView] = useState('preview');
   const classes = useStyles(styles);
 
   useEffect(() => {
@@ -82,36 +85,49 @@ const FormPreview = () => {
     setForm(form);
   }
 
+  const handleViewChange = (e) => {
+    setView(e.target.value);
+    refreshForm();
+  }
+
+  const buttonGroup = (
+    <Radio.Group size="small" defaultValue="preview" buttonStyle="solid" onChange={handleViewChange}>
+      <Radio.Button value="preview">Form Preview</Radio.Button>
+      <Radio.Button value="code">Get Code</Radio.Button>
+    </Radio.Group>
+  );
+
   return (
     <>
-      <h3 style={{ marginBottom: '2rem', textAlign: 'center' }}>
-        Form Preview
-        <Button 
+      <Card size="small" title={buttonGroup} className="form-preview-card" extra={<Button 
           className="round-btn"
           type="default"
           onClick={refreshForm}
         >
           <SyncOutlined />
-        </Button>
-      </h3>
-      <Spin spinning={loading}>
-      {nodes.length ? 
-        <div className={`
-          ${Object.keys(styles.state.focused).length && classes.containerFocused} 
-          ${Object.keys(styles.state.invalid).length && classes.containerInvalid}
-        `}>
-          {
-            nodes.map((field, idx) => (
-              <React.Fragment key={idx}>
-                {state.form[idx] && state.form[idx].label && <label className={classes.label}>{state.form[idx].label}</label>}
-                <div id={field.split(' ').join('-').toLowerCase()} className={classes.wrapper} key={idx}></div>
-              </React.Fragment>
-            ))
+        </Button>}>
+        {
+          view === 'preview' ? 
+          <Spin spinning={loading}>
+          {nodes.length ? 
+            <div className={`
+              ${Object.keys(styles.state.focused).length && classes.containerFocused} 
+              ${Object.keys(styles.state.invalid).length && classes.containerInvalid}
+            `}>
+              {
+                nodes.map((field, idx) => (
+                  <React.Fragment key={idx}>
+                    {state.form[idx] && state.form[idx].label && <label className={classes.label}>{state.form[idx].label}</label>}
+                    <div id={field.split(' ').join('-').toLowerCase()} className={classes.wrapper} key={idx}></div>
+                  </React.Fragment>
+                ))
+              }
+            </div> :
+            <p className="form-preview-empty">Add at least one field for preview</p>
           }
-        </div> :
-        <p className="form-preview-empty">Add at least one field for preview</p>
-      }
-      </Spin>
+          </Spin> : <CodeExample />
+        }
+      </Card>
     </>
   )
 }
