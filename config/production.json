@@ -12,6 +12,7 @@
     "gtmAuth": "qRiAULcoInbdcD7IDqKlLA"
   },
   "heapTrackingId": "11282330",
+  "isAnalyticsEnabled": true,
   "rollbar": {
     "verbose": false,
     "enabled": true,
