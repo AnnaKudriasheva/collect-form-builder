@@ -11,7 +11,7 @@ function heapTemplate(config) {
 export default function useHeapAnalytics() {
   useLayoutEffect(() => {
     if (
-      ['production', 'development'].includes(process.env.DOCS_ENV) &&
+      config.isAnalyticsEnabled &&
       !localStorage.getItem('vgs_staff') &&
       !document.querySelector('#heap-container')
     ) {
