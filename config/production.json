@@ -1,6 +1,6 @@
 {
-  "accountsAPI": "https://accounts.verygoodsecurity.io",
-  "userPersonalizationService": "https://personalize.apps.verygoodsecurity.io",
+  "accountsAPI": "https://accounts.verygoodsecurity.com ",
+  "userPersonalizationService": "https://personalize.apps.verygoodsecurity.com",
   "keycloakConfig": {
     "realm": "vgs",
     "clientId": "forms-vgs-dev",
