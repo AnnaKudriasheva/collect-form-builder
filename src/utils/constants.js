@@ -15,5 +15,4 @@ const LINKS = {
   UPSTREAM_HOST: 'https://www.verygoodsecurity.com/docs/terminology/nomenclature#upstream-host',
 };
 
-
 export { SYSTEM_FONTS, BORDER_STYLES, BOX_SIZING, COLLECT_ENVS, LINKS };

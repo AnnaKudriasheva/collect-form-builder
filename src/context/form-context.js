@@ -1,8 +1,8 @@
-import React, { useReducer, createContext } from 'react';
+import React, { useReducer, createContext, useEffect } from 'react';
 import { payment_form_config } from '../templates/payment_form_config_template';
 export const FormContext = createContext();
 
-const initialState = {
+const initialState = JSON.parse(localStorage.getItem("form_state")) || {
   form: payment_form_config,
   currentActiveField: {},
   mode: '',
@@ -70,6 +70,11 @@ const reducer = (state, action) => {
 
 export const FormContextProvider = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    localStorage.setItem('form_state', JSON.stringify(state));
+  }, [state]);
+
   return (
     <FormContext.Provider value={[state, dispatch]}>
       {props.children}

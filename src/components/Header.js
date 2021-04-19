@@ -3,7 +3,7 @@ import { Layout, Row, Col, Button }  from 'antd';
 import { LoginOutlined, BookOutlined, LogoutOutlined } from '@ant-design/icons';
 
 import VGSLogo from '../images/vgs-logo.svg';
-import { useAuthContext } from '../context'
+import { useAuthContext } from '../context';
 
 const { Header } = Layout;
 

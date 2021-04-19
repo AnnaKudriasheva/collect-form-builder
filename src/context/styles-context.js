@@ -1,7 +1,7 @@
-import React, { useReducer, createContext } from 'react';
+import React, { useReducer, createContext, useEffect } from 'react';
 export const FormStylesContext = createContext();
 
-const initialState = {
+const initialState = JSON.parse(localStorage.getItem("styles_state")) || {
   wrapper: {
     'margin-bottom': '16px',
     'width': '100%',
@@ -85,6 +85,11 @@ const reducer = (state, action) => {
 
 export const FormStylesContextProvider = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    localStorage.setItem('styles_state', JSON.stringify(state));
+  }, [state]);
+
   return (
     <FormStylesContext.Provider value={[state, dispatch]}>
       {props.children}
