@@ -2,6 +2,7 @@ import endent from 'endent';
 
 const getCollectConfiguration = (state, styles) => {
   const filteredStyles = Object.entries(styles).filter(([_key, value]) => value);
+  console.log(state);
   const vaultId = state.vault_id || '<VAULT_ID>';
   return endent`
     const form = window.VGSCollect.create('${vaultId}', '${state.environment}', (state) => {});\n

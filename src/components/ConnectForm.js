@@ -46,6 +46,10 @@ const ConnectForm = () => {
   }
 
   useEffect(() => {
+    updateJSCode(getCollectJSConfiguration(state, styles.iframe));
+  }, [state.vault_id]);
+
+  useEffect(() => {
     dispatch({ type: 'SET_VAULT_ID', payload: vault?.attributes?.identifier });
   }, [vault]);
 

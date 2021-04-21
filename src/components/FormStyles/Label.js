@@ -27,6 +27,7 @@ const Label = (props) => {
             label="Font Weight" 
             name="font-weight" 
             placeholder="100"
+            defaultValue={700}
             step={100} 
             onChange={(value) => updateLabelStyles('font-weight', value)} 
             validation={numericValidation}
