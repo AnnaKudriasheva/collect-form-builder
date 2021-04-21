@@ -20,7 +20,7 @@ const initialState = (checkWindow() && JSON.parse(localStorage.getItem("styles_s
   iframe: {
     'font-size': '16px',
     'color': '#40545F',
-    'font-family': 'Arial, sans-serif',
+    'font-family': '"Arial", sans-serif',
     '&::placeholder': {
       'color': '#C8D0DB'
     },
