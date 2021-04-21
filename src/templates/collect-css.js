@@ -32,7 +32,7 @@ const getCollectCSSConfiguration = (styles) => {
       iframe['font-family'] ?
       endent`
       html {
-        font-family: ${iframe['font-family']}
+        font-family: ${iframe['font-family']};
       }
       ` : endent``
     }
