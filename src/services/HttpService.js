@@ -42,9 +42,10 @@ _VGSClient.interceptors.response.use((response) => {
 
     if (errorResponse && errorResponse.code || (errorResponse.status && errorResponse.title && errorResponse.detail)) {
       if (isJSON(errorResponse.detail)) {
-        errorMessage = JSON.parse(errorResponse.detail);
+        errorMessage = JSON.parse(errorResponse.detail)[0]?.errorMessage;
+      } else {
+        errorMessage = errorResponse.detail
       }
-      errorMessage = errorResponse.detail
     } else if (get(error, 'response.data.message')) {
       errorMessage = error.response.data.message;
     } else {

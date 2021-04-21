@@ -89,15 +89,18 @@ const ConnectForm = () => {
   const handleGenerateVault = async () => {
     if (vaultName && selectedOrg?.id && createRouteInfo?.isIdle) {
       setIsGeneratingVault(true);
-      const vault = await createVault({
-        organizationId: selectedOrg?.id,
-        vaultName,
-      });
-      await checkVaultProvisioning({ vault });
-      const routeConfig = getRouteConfig(state)?.data?.[0];
-      await createRoute({ vault, routeConfig });
-      setVault(vault);
-      setIsGeneratingVault(false);
+      try {
+        const vault = await createVault({
+          organizationId: selectedOrg?.id,
+          vaultName,
+        });
+        await checkVaultProvisioning({ vault });
+        const routeConfig = getRouteConfig(state)?.data?.[0];
+        await createRoute({ vault, routeConfig });
+        setVault(vault);
+      } finally {
+        setIsGeneratingVault(false);
+      }
     }
   }
 
@@ -169,7 +172,7 @@ const ConnectForm = () => {
           isAuthenticated && (
             <>
             {
-              createVaultInfo?.isIdle &&
+              (createVaultInfo?.isIdle || createVaultInfo?.isError) &&
               <>
                 <Button
                   type="primary"
