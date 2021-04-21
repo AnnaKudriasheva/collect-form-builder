@@ -13,7 +13,7 @@ const stringify = (obj_from_json) => {
 
 
 const getCollectCSSConfiguration = (styles) => {
-  let { wrapper, state, label } = styles;
+  let { wrapper, state, label, iframe } = styles;
 
   if (!wrapper['border-width']) {
     delete wrapper['border-width'];
@@ -23,11 +23,21 @@ const getCollectCSSConfiguration = (styles) => {
 
   const rules = stringify(wrapper);
   const labelRules = stringify(label);
+  console.log(styles);
   return endent`
     * {
       box-sizing: border-box;
     }
-    
+
+    ${
+      iframe['font-family'] ?
+      endent`
+      html {
+        font-family: "${iframe['font-family']}"
+      }
+      ` : endent``
+    }
+
     iframe {
       width: 100%;
       height: 100%;

@@ -66,7 +66,7 @@ const getRouteConfig = (state) => {
           "attributes": {
               "destination_override_endpoint": "https://echo.apps.verygood.systems",
               "entries": state.form.map(field => getEntry(state.endpoint, field.name, field.type)),
-              "host_endpoint": "(.*)\\.verygoodproxy\\.io",
+              "host_endpoint": "(.*)\\.verygoodproxy\\.com",
               "port": 80,
               "protocol": "http",
               "source_endpoint": "*",

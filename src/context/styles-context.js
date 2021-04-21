@@ -20,6 +20,7 @@ const initialState = (checkWindow() && JSON.parse(localStorage.getItem("styles_s
   iframe: {
     'font-size': '16px',
     'color': '#40545F',
+    'font-family': 'Arial, sans-serif',
     '&::placeholder': {
       'color': '#C8D0DB'
     },
@@ -28,7 +29,8 @@ const initialState = (checkWindow() && JSON.parse(localStorage.getItem("styles_s
     'margin-bottom': '8px',
     'display': 'block',
     'color': '#40545F',
-    'font-size': '14px'
+    'font-size': '14px',
+    'font-weight': '700'
   },
   state: {
     focused: {
