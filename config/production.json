@@ -1,5 +1,5 @@
 {
-  "accountsAPI": "https://accounts.verygoodsecurity.com",
+  "accountsAPI": "https://accounts.apps.verygoodsecurity.com",
   "userPersonalizationService": "https://personalize.apps.verygoodsecurity.com",
   "keycloakConfig": {
     "realm": "vgs",
