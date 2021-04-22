@@ -13,6 +13,7 @@ const LINKS = {
   ANDROID_SDK: 'https://www.verygoodsecurity.com/docs/vgs-collect/android-sdk/overview',
   DASHBOARD: 'https://dashboard.verygoodsecurity.com/',
   UPSTREAM_HOST: 'https://www.verygoodsecurity.com/docs/terminology/nomenclature#upstream-host',
+  YAML_IMPORT: 'https://www.verygoodsecurity.com/docs/features/yaml#import-a-single-route',
 };
 
 export { SYSTEM_FONTS, BORDER_STYLES, BOX_SIZING, COLLECT_ENVS, LINKS };
