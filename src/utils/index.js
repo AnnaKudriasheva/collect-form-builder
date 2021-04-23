@@ -1,5 +1,3 @@
-import { some } from 'lodash';
-
 export const JSONHeaders = [
   'application/json',
   'application/vnd.api+json',
@@ -20,8 +18,13 @@ export const createReducer = (
   };
 };
 
-export function isJSON(contentType) {
-  return some(JSONHeaders, (header) => contentType.startsWith(header));
+export function isJSON(str) {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
 }
 
 const delayFunc = (time) => new Promise((res) => setTimeout(res, time));
