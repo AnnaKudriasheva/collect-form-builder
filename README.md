@@ -4,7 +4,7 @@
 
 ## 🚀 Instant Collect.js Form Builder
 
-[https://vgs-form-builder.netlify.app/](https://vgs-form-builder.netlify.app/)
+[https://forms.vgs.dev/](https://forms.vgs.dev/)
 
 1.  **Start developing**
 
