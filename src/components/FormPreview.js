@@ -28,11 +28,17 @@ const useStyles = createUseStyles({
 const FormPreview = () => {
   const [state] = useContext(FormContext);
   const [styles] = useContext(FormStylesContext);
-  const [nodes, setNodes] = useState(['cardholder-name', 'card-number', 'card-expiration-date', 'card-security-code']);
+  const [nodes, setNodes] = useState([]);
   const [form, setForm] = useState(false);
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState('preview');
   const classes = useStyles(styles);
+
+
+  useEffect(() => {
+    const nodes = state.form.map((field) => field.name);
+    setNodes([...nodes]);
+  }, [state.form]);
 
   useEffect(() => {
     setLoading(true);
