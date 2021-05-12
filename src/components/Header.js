@@ -1,6 +1,6 @@
 import React  from 'react'
 import { Layout, Row, Col, Button }  from 'antd';
-import { LoginOutlined, BookOutlined, LogoutOutlined } from '@ant-design/icons';
+import { LoginOutlined, BookOutlined, LogoutOutlined, AlertOutlined } from '@ant-design/icons';
 
 import VGSLogo from '../images/vgs-logo.svg';
 import { useAuthContext } from '../context';
@@ -23,6 +23,7 @@ const FormBuilderHeader = () => {
         <Col span={12}>
           <div className="d-flex j-end">
             <div>
+              <Button className="mr-1" href="https://support.verygoodsecurity.com/main/s/" target="_blank" type="link" icon={<AlertOutlined />}>Need help?</Button>
               <Button className="mr-1" href="https://www.verygoodsecurity.com/docs/vgs-collect/overview" type="primary" icon={<BookOutlined />}>Documentation</Button>
               <Button
                 type="default"
